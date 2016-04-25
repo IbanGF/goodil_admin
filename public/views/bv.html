@@ -1,0 +1,10 @@
+<h1>{{title}}</h1>
+<ul class="list-group">
+    <input type="file" onchange="angular.element(this).scope().onFileUpload(this)">
+    <br /> {{fileInputContent}}
+    <br />
+    <button type="button" ng_click="geocode()" class="btn btn-default">Geocode</button>
+    <li class="list-group-item" ng-repeat="city in list track by $index">
+        {{$index+1}} : {{city.LIBGEO}} : {{city.LIBBV2012}}
+    </li>
+</ul>

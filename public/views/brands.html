@@ -1,0 +1,29 @@
+<h1>{{title}}</h1>
+<form class="form-inline">
+    <div class="form-group">
+        <input type="text" class="form-control" id="inputMessage" placeholder="Brand name" ng-model="name">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" id="inputMessage" placeholder="Brand description" ng-model="description">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" id="inputMessage" placeholder="Brand logo" ng-model="logo">
+    </div>
+    <button type="submit" class="btn btn-default" ng-click="add()">Add</button>
+</form>
+<hr>
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="brand in brands">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" class="form-control" id="inputMessage" ng-model="brand.name">
+                <input type="text" class="form-control" id="inputMessage" ng-model="brand.description">
+                <img src="{{brand.logo}}" style="max-width: 200px;">
+            </div>
+            <div class="pull-right">
+                <button type="submit" class="btn btn-default" ng-click="update(brand)">Update</button>
+                <button type="submit" class="btn btn-danger" ng-click="delete(brand)">Delete</button>
+            </div>
+        </form>
+    </li>
+</ul>

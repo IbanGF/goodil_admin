@@ -1,0 +1,31 @@
+<h1>{{title}}</h1>
+<form class="form-inline">
+    <div class="form-group">
+        <input type="text" class="form-control" id="inputMessage" placeholder="Shop name" ng-model="name">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" id="inputMessage" placeholder="Shop address" ng-model="address">
+    </div>
+    <div class="form-group">
+        <input type="number" class="form-control" id="inputMessage" placeholder="Area radius" ng-model="catchment_area_radius">
+    </div>
+    <button type="submit" class="btn btn-default" ng-click="add()">Add</button>
+</form>
+<hr>
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="shop in shops">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" class="form-control" id="inputMessage" ng-model="shop.name">
+                <input type="text" class="form-control" id="inputMessage" ng-model="shop.address">
+                <input type="number" class="form-control" id="inputMessage" ng-model="shop.catchment_area_radius">
+
+                <!--<img src="{{shop.logo}}" style="max-width: 200px;">-->
+            </div>
+            <div class="pull-right">
+                <button type="submit" class="btn btn-default" ng-click="update(shop)">Update</button>
+                <button type="submit" class="btn btn-danger" ng-click="delete(shop)">Delete</button>
+            </div>
+        </form>
+    </li>
+</ul>

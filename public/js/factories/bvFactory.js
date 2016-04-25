@@ -1,0 +1,5 @@
+function bvFactory() {
+    return {
+        datas: {},
+    };
+}
