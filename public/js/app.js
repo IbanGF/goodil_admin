@@ -19,5 +19,6 @@ angular.module('app', ['ngRoute'])
     .service('bvService', bvService)
     .service('categoriesService', categoriesService)
     .service('usersService', usersService)
+    .service('usersService', usersService)
     .factory('bvFactory', bvFactory)
     /*.run(run);*/

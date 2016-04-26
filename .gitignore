@@ -2,3 +2,9 @@ node_modules/
 *.DS_Store
 config/database.js
 config/BV.json
+<<<<<<< HEAD
+=======
+public/index.html
+public/js/app.js
+public/js/routes.js
+>>>>>>> b7ed19c06532ca42c9c3458b7bcd0b4f34708822
