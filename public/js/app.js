@@ -11,9 +11,12 @@ angular.module('app', ['ngRoute'])
     .controller('brandsController', brandsController)
     .controller('shopsController', shopsController)
     .controller('bvController', bvController)
+    .controller('usersController', usersController)
     .service('brandsService', brandsService)
     .service('shopsService', shopsService)
     .service('fileInputService', fileInputService)
     .service('bvService', bvService)
+    .service('usersService', usersService)
+
     .factory('bvFactory', bvFactory)
     /*.run(run);*/
