@@ -75,12 +75,18 @@ var User = {
             }
         });
     },
+    findAllUsers: function (req, res) {
+        User.model.find(function (err, data) {
+            res.send(data);
+        });
+    },
     updateUser: function (req, res) {
-        console.log(req.body);
         User.model.findByIdAndUpdate(req.params.id, {
-            name: req.body.name,
-            description: req.body.description,
-            logo: req.body.logo
+            nickname: req.body.nickname,
+            email: req.body.email,
+            encrypted_password: req.body.encrypted_password,
+            first_name: req.body.first_name,
+            last_name:req.body.last_name,
         }, function () {
             res.sendStatus(200);
         });
