@@ -23,16 +23,18 @@
 </form>
 <hr>
 <ul class="list-group">
-    <li class="list-group-item" ng-repeat="brand in brands">
+    <li class="list-group-item" ng-repeat="user in users">
         <form class="form-inline">
             <div class="form-group">
-                <input type="text" class="form-control" id="inputMessage" ng-model="brand.name">
-                <input type="text" class="form-control" id="inputMessage" ng-model="brand.description">
-                <img src="{{brand.logo}}" style="max-width: 200px;">
+                <input type="text" class="form-control" id="inputMessage" ng-model="user.nickname">
+                <input type="text" class="form-control" id="inputMessage" ng-model="user.email">
+                <input type="text" class="form-control" id="inputMessage" ng-model="user.encrypted_password">
+                <input type="text" class="form-control" id="inputMessage" ng-model="user.first_name">
+                <input type="text" class="form-control" id="inputMessage" ng-model="user.last_name">
             </div>
             <div class="pull-right">
-                <button type="submit" class="btn btn-default" ng-click="update(brand)">Update</button>
-                <button type="submit" class="btn btn-danger" ng-click="delete(brand)">Delete</button>
+                <button type="submit" class="btn btn-default" ng-click="update(user)">Update</button>
+                <button type="submit" class="btn btn-danger" ng-click="delete(user)">Delete</button>
             </div>
         </form>
     </li>
