@@ -1,8 +1,8 @@
 // Brand CONTROLLER
-function bvController($scope, fileInputService, bvService, bvFactory) {
+function bvController($scope, bvService, bvFactory) {
     $scope.title = "Bassin de vie List";
 
-    $scope.fileInputContent = "";
+    /*$scope.fileInputContent = "";
     $scope.onFileUpload = function (element) {
         $scope.$apply(function (scope) {
             var file = element.files[0];
@@ -14,15 +14,16 @@ function bvController($scope, fileInputService, bvService, bvFactory) {
                 bvService.addBVFile(bvFactory.datas);
             });
         });
-    };
+    };*/
 
-    $scope.geocode = function () {
+    /*$scope.geocode = function () {
         bvService.geocode().then(function (res) {
             console.log(res.data);
         });
-    }
+    }*/
 
     bvService.findAllBV().then(function (res) {
-        $scope.list = res.data;
+        console.log(res.data);
+        $scope.BVList = res.data;
     });
 }

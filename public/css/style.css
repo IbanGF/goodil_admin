@@ -1,12 +1,45 @@
-body{
+body {
     padding-top: 70px;
 }
-.navbar-border{
-	border-bottom: 3px solid #F0DB4F;
+
+.navbar-border {
+    border-bottom: 3px solid #F0DB4F;
 }
-.navbar-header img{
-	transition: 0.4s;
+
+.navbar-header img {
+    transition: 0.4s;
 }
-.navbar-header img:hover{
-	transform: rotate(360deg);
-}  
+
+.navbar-header img:hover {
+    transform: rotate(360deg);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+caption {
+    font-weight: bold;
+    margin: 2px;
+    font-size: 25px;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+th,
+td {
+    height: 100px;
+    padding: 2px;
+    vertical-align: middle;
+}
+
+th {
+    background-color: grey;
+    font-size: 20px;
+}
