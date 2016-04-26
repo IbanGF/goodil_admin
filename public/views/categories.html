@@ -1,0 +1,26 @@
+<h1>{{title}}</h1>
+<form class="form-inline">
+    <div class="form-group">
+        <input type="text" class="form-control" id="inputMessage" placeholder="Category name" ng-model="name">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" id="inputMessage" placeholder="Category logo" ng-model="logo">
+    </div>
+    <button type="submit" class="btn btn-default" ng-click="add()">Add</button>
+</form>
+<hr>
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="category in categories">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" class="form-control" id="inputMessage" ng-model="category.name">
+                <input type="text" class="form-control" id="inputMessage" ng-model="category.logo">
+                <img src="{{category.logo}}" style="max-width: 200px;">
+            </div>
+            <div class="pull-right">
+                <button type="submit" class="btn btn-default" ng-click="update(category)">Update</button>
+                <button type="submit" class="btn btn-danger" ng-click="delete(category)">Delete</button>
+            </div>
+        </form>
+    </li>
+</ul>
