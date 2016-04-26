@@ -18,9 +18,7 @@ var brandSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    updated_at: {
-        type: Date
-    },
+    updated_at: Date
 });
 var Brand = {
 

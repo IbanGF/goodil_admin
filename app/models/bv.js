@@ -28,7 +28,7 @@ var BV = {
 
     model: mongoose.model('BV', BVCollection),
 
-    addBVFile: function (req, res) {
+    /*addBVFile: function (req, res) {
         fs.writeFile('public/bv/bv.csv', req.body.fileContent, "utf8", function (err) {
             if (err) throw err;
             console.log(req.body.fileName + ' saved! in : public/bv/' + req.body.fileName);
@@ -39,9 +39,9 @@ var BV = {
             });
             readStream.pipe(csvConverter).pipe(writeStream);
         });
-    },
+    },*/
 
-    geocodeCities: function (req, res) {
+    /*geocodeCities: function (req, res) {
         BV.model.find({}, 'LIBGEO', function (err, data) {
             var cities = [];
             var obj = JSON.parse(JSON.stringify(data));
@@ -54,10 +54,11 @@ var BV = {
                 res.send(response);
             });
         });
-    },
+    },*/
 
     findAllBV: function (req, res) {
         BV.model.find(function (err, data) {
+            console.log(data);
             res.send(data);
         });
     },
