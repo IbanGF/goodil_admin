@@ -6,7 +6,7 @@ function run($rootScope, $location) {
         $rootScope.activetab = newVal;
     });
 }
-angular.module('app', ['ngRoute'])
+angular.module('app', ['ngRoute','infinite-scroll'])
     .config(routes)
     .controller('brandsController', brandsController)
     .controller('shopsController', shopsController)

@@ -57,10 +57,16 @@ var BV = {
     },*/
 
     findAllBV: function (req, res) {
-        BV.model.find(function (err, data) {
-            console.log(data);
-            res.send(data);
-        });
+        var perPage = 100,
+            page = Math.max(0, req.param('page'));
+        BV.model
+            .find()
+            .limit(perPage)
+            .skip(perPage * page)
+            .exec(function (err, data) {
+                console.log(data);
+                res.send(data);
+            });
     },
 
     findOneBV: function (req, res) {

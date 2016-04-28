@@ -25,6 +25,7 @@
     "method-override": "^2.3.5",
     "mongoose": "^4.4.12",
     "mongoose-geojson-schema": "0.0.2",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "ng-infinite-scroll": "^1.2.1"
   }
 }

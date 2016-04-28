@@ -1,5 +1,5 @@
 function bvFactory() {
     return {
-        datas: {},
+        items: [],
     };
 }

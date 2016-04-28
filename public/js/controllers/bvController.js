@@ -1,6 +1,8 @@
 // Brand CONTROLLER
 function bvController($scope, bvService, bvFactory) {
     $scope.title = "Bassin de vie List";
+    $scope.busy = false;
+    var page = 0;
 
     /*$scope.fileInputContent = "";
     $scope.onFileUpload = function (element) {
@@ -22,8 +24,19 @@ function bvController($scope, bvService, bvFactory) {
         });
     }*/
 
-    bvService.findAllBV().then(function (res) {
-        console.log(res.data);
-        $scope.BVList = res.data;
+    bvService.findAllBV(page).then(function (res) {
+        bvFactory.items = res.data;
+        $scope.BVList = bvFactory.items;
     });
+
+    $scope.nextPage = function () {
+        if ($scope.busy) return;
+        $scope.busy = true;
+        page++;
+        bvService.findAllBV(page).then(function (res) {
+            bvFactory.items = bvFactory.items.concat(res.data);
+            $scope.BVList = bvFactory.items;
+            $scope.busy = false;
+        });
+    }
 }

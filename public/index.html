@@ -14,6 +14,8 @@
     <!-- AngularJS -->
     <script src="js/libs/angular.min.js"></script>
     <script src="js/libs/angular-route.min.js"></script>
+    <!-- infinite scroll -->
+    <script src='js/libs/ng-infinite-scroll.min.js'></script>
     <!-- Controllers -->
     <script src="js/controllers/brandsController.js"></script>
     <script src="js/controllers/shopsController.js"></script>
@@ -42,7 +44,11 @@
                 <a href="#/"><img src="https://unhosted.org/slides/img/js.png" width="50px"></a>
             </div>
             <ul class="nav navbar-nav">
-                <li ng-class="{active: activetab=='/'}"><a href="#/">Home</a></li>
+                <li ng-class="{active: activetab=='/'}"><a href="#/">Brand</a></li>
+                <li ng-class="{active: activetab=='/shops'}"><a href="#/shops">Shops</a></li>
+                <li ng-class="{active: activetab=='/categories'}"><a href="#/categories">Categories</a></li>
+                <li ng-class="{active: activetab=='/users'}"><a href="#/users">Users</a></li>
+                <li ng-class="{active: activetab=='/deals'}"><a href="#/deals">Deals</a></li>
                 <li ng-class="{active: activetab=='/about'}"><a href="#/about">About</a></li>
             </ul>
         </div>

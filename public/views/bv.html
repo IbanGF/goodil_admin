@@ -1,19 +1,22 @@
 <ul class="list-group">
-    <table>
-        <caption>{{title}}</caption>
-        <tr>
-            <th class="text-center">Nb</th>
-            <th class="text-center">Commune</th>
-            <th class="text-center">2D_shape</th>
-            <th class="text-center">geo_shape</th>
-            <th class="text-center">Bassin de vie</th>
-        </tr>
-        <tr ng-repeat='city in BVList track by $index'>
-            <td>{{$index+1}}</td>
-            <td>{{city.Commune}}</td>
-            <td>{{city['2D_shape']}}</td>
-            <td>{{city.geo_shape | json}}</td>
-            <td>{{city.LIBBV2012}}</td>
-        </tr>
-    </table>
+    <div infinite-scroll='nextPage()' infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
+        <table>
+            <caption>{{title}}</caption>
+            <tr>
+                <th class="text-center">Nb</th>
+                <th class="text-center">Commune</th>
+                <th class="text-center">2D_shape</th>
+                <th class="text-center">geo_shape</th>
+                <th class="text-center">Bassin de vie</th>
+            </tr>
+            <tr ng-repeat='city in BVList track by $index'>
+                <td>{{$index+1}}</td>
+                <td>{{city.Commune}}</td>
+                <td>{{city['2D_shape']}}</td>
+                <td>{{city.geo_shape | json}}</td>
+                <td>{{city.LIBBV2012}}</td>
+            </tr>
+        </table>
+        <div ng-show='busy'>Loading data...</div>
+    </div>
 </ul>
