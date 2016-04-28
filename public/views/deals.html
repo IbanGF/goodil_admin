@@ -1,0 +1,40 @@
+<form class="form-inline">
+    <div class="form-group">
+        <input type="text" class="form-control" id="inputMessage" placeholder="Deal name" ng-model="name">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" id="inputMessage" placeholder="Deal description" ng-model="description">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" id="inputMessage" placeholder="Deal term" ng-model="term">
+    </div>
+    <div class="form-group">
+        <input type="date" class="form-control" id="inputMessage" placeholder="Deal start_date" ng-model="start_date">
+    </div>
+     <div class="form-group">
+        <input type="date" class="form-control" id="inputMessage" placeholder="Deal end_date" ng-model="end_date">
+    </div>
+
+
+
+
+    <button type="submit" class="btn btn-default" ng-click="add()">Add</button>
+</form>
+<hr>
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="deal in deals">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" class="form-control" id="inputMessage" ng-model="deal.name">
+                <input type="text" class="form-control" id="inputMessage" ng-model="deal.description">
+                <input type="text" class="form-control" id="inputMessage" ng-model="deal.term">
+                <input type="text" class="form-control" id="inputMessage" ng-model="deal.start_date">
+                <input type="text" class="form-control" id="inputMessage" ng-model="deal.end_date">
+            </div>
+            <div class="pull-right">
+                <button type="submit" class="btn btn-default" ng-click="update(deal)">Update</button>
+                <button type="submit" class="btn btn-danger" ng-click="delete(deal)">Delete</button>
+            </div>
+        </form>
+    </li>
+</ul>

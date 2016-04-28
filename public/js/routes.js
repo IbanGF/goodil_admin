@@ -20,6 +20,10 @@ function routes($routeProvider) {
             templateUrl: 'views/users.html',
             controller: 'usersController'
         })
+        .when('/deals', {
+            templateUrl: 'views/deals.html',
+            controller: 'dealsController'
+        })
         .when('/about', {
             templateUrl: 'views/about.html'
         })
