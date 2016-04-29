@@ -15,12 +15,12 @@ var shopSchema = new mongoose.Schema({
     brand_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Brand'
-    },
+    },/*
     city_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'City',
-        /*required: [true, 'city required']*/
-    },
+        required: [true, 'city required']
+    },*/
     coordinates: {
         type: GeoJSON.Feature,
         /*required: [true, 'coordinates required']*/
@@ -34,7 +34,6 @@ var Shop = {
     model: mongoose.model('Shop', shopSchema),
 
     createShop: function (req, res) {
-        console.log(req.body);
         Shop.model.create({
             name: req.body.name,
             address: req.body.address,
@@ -52,14 +51,31 @@ var Shop = {
             }
         });
     },
+    linkBrand: function(req, res){
+        Shop.model.findByIdAndUpdate(req.params.id, {
+            brand_id: req.body.brand_id,
+        }, function () {
+            res.sendStatus(200);
+        })
+    },
     findAllShops: function (req, res) {
-        Shop.model.find(function (err, data) {
-            res.send(data);
-        });
+        Shop.model
+            .find()
+            .populate('Brand')
+            .exec(function (err, data) {
+                if (!err) {
+                    res.send(data);
+                } else {
+                    console.log(err);
+                    res.sendStatus(400);
+                }
+            });
     },
     updateShop: function (req, res) {
         Shop.model.findByIdAndUpdate(req.params.id, {
-            description: req.body.description
+            name: req.body.name,
+            address: req.body.address,
+            catchment_area_radius: req.body.catchment_area_radius
         }, function () {
             res.sendStatus(200);
         })

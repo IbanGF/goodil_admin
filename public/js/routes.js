@@ -1,6 +1,10 @@
 function routes($routeProvider) {
     $routeProvider
         .when('/', {
+            templateUrl: 'views/dashboard.html',
+            controller: 'dashboardController'
+        })
+        .when('/brands', {
             templateUrl: 'views/brands.html',
             controller: 'brandsController'
         })

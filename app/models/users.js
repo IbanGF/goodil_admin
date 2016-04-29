@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+
 var userSchema = new mongoose.Schema({
     nickname: {
         type: String,
@@ -7,6 +8,12 @@ var userSchema = new mongoose.Schema({
     },
     email:{
         type: String,
+        validate: {
+            validator: function (v) {
+                return /[\w\-\+]+(\.[\w\-]+)*@[\w\-]+(\.[\w\-]+)*\.[\w\-]{2,4}/.test(v);
+            },
+            message: '{VALUE} is not a valid email!'
+        },
         required: [true, 'email required']
 
     },
@@ -30,26 +37,20 @@ var userSchema = new mongoose.Schema({
      updated_at: {
         type: Date
     },
-
     confirmation_token: String,
-
     role: String,
-
     first_name:{
         type: String,
         maxlength: [50, 'first_name can have a maximum of 50 char'],
         required: [true, 'first_name required']
-
     },
-
     last_name:{
         type: String,
         maxlength:[50, 'last_name can have a maximun of 50 char'],
         required: [true, 'last_name required']
     },
-
-
 });
+
 var User = {
 
     model: mongoose.model('User', userSchema),
@@ -97,4 +98,5 @@ var User = {
         })
     }
 }
+
 module.exports = User;

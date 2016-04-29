@@ -12,14 +12,26 @@ var dealSchema = new mongoose.Schema({
         required: [true, 'end_date required']
     },
     image: String,
-     //_shopId: Schema.Types.ObjectId,
+    
+    subCategoryId: { 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'SubCategory'
+    },
+    
+    shopId: { 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Shop'
+    },
+    
     created_at: {
         type: Date,
         default: Date.now
     },
     
     updated_at: Date
+    
 });
+
 var Deal = {
 
     model: mongoose.model('Deal', dealSchema),
@@ -32,9 +44,8 @@ var Deal = {
             start_date:req.body.start_date,
             end_date:req.body.end_date,
             image:req.body.image,
-
-
-
+            subCategoryId: req.body.subCategoryId,
+            shopId: req.body.shopId
         }, function (err, data) {
             if (!err) {
                 res.send({
@@ -47,9 +58,18 @@ var Deal = {
         });
     },
     findAllDeals: function (req, res) {
-        Deal.model.find(function (err, data) {
-            res.send(data);
-        });
+        Deal.model
+            .find()
+            .populate('Shop')
+            .populate('SubCategory')
+            .exec(function (err, data) {
+                if (!err) {
+                    res.send(data);
+                } else {
+                    console.log(err);
+                    res.sendStatus(400);
+                }
+            });
     },
     updateDeal: function (req, res) {
         console.log(req.body);
