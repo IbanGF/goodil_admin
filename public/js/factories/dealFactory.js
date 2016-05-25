@@ -1,0 +1,5 @@
+function dealFactory() {
+    return {
+        deal: {}
+    };
+}

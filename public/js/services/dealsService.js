@@ -3,14 +3,14 @@ function dealsService($http) {
         getDeals: function () {
             return $http.get('/deal');
         },
-        updateDeal: function (id, data) {
-            return $http.put('/deal/' + id, data);
+        updateDeal: function (id, deal) {
+            return $http.put('/deal/' + id, deal);
         },
-        createDeal: function (data) {
-            return $http.post('/deal', data);
+        createDeal: function (deal) {
+            return $http.post('/deal', deal);
         },
         deleteDeal: function (id) {
             return $http.delete('/deals/' + id);
         }
-    }
-};
+    };
+}

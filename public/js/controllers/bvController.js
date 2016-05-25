@@ -38,5 +38,5 @@ function bvController($scope, bvService, bvFactory) {
             $scope.BVList = bvFactory.items;
             $scope.busy = false;
         });
-    }
+    };
 }

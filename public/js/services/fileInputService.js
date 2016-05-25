@@ -19,4 +19,4 @@ function fileInputService($q) {
         };
         return deferred.promise;
     };
-};
+}

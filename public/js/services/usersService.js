@@ -12,5 +12,5 @@ function usersService($http) {
         deleteUser: function (id) {
             return $http.delete('/user/' + id);
         }
-    }
-};
+    };
+}

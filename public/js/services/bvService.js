@@ -2,10 +2,10 @@
 function bvService($http) {
     return {
         findAllBV: function (page) {
-            return $http.get('/AllBV/' + page);
+            return $http.get('/findAllBVs/' + page);
         },
-        geocode: function () {
-            return $http.get('/Geocode');
+        findOneBV: function (codePostal) {
+            return $http.get('/findOneBV/' + codePostal);
         }
-    }
-};
+    };
+}

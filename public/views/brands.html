@@ -1,29 +1,63 @@
-<h1>{{title}}</h1>
-<form class="form-inline">
-    <div class="form-group">
-        <input type="text" class="form-control" id="inputMessage" placeholder="Brand name" ng-model="name">
+<div class="container">
+  <div class="row">
+    <div class="card hoverable">
+      <div class="card-content">
+        <span class="card-title">
+          <h4>{{title}}</h4>
+        </span>
+        <div class="input-field">
+          <input type="text" id="brandName" ng-model="name">
+          <label for="brandName">Nom:</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="brandDescription" ng-model="description">
+          <label for="brandDescription">description:</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="brandLogo" ng-model="logo">
+          <label for="brandLogo">Logo:</label>
+        </div>
+        <a ng-click="add()" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Ajouter</a>
+      </div>
     </div>
-    <div class="form-group">
-        <input type="text" class="form-control" id="inputMessage" placeholder="Brand description" ng-model="description">
-    </div>
-    <div class="form-group">
-        <input type="text" class="form-control" id="inputMessage" placeholder="Brand logo" ng-model="logo">
-    </div>
-    <button type="submit" class="btn btn-default" ng-click="add()">Add</button>
-</form>
-<hr>
-<ul class="list-group">
-    <li class="list-group-item" ng-repeat="brand in brands">
-        <form class="form-inline">
-            <div class="form-group">
-                <input type="text" class="form-control" id="inputMessage" ng-model="brand.name">
-                <input type="text" class="form-control" id="inputMessage" ng-model="brand.description">
-                <img src="{{brand.logo}}" style="max-width: 200px;">
+    <div class="row">
+      <div class="col s6 m4 l3" ng-repeat="brand in brands">
+        <div class="card medium hoverable">
+          <div class="card-image">
+            <img src="{{brand.logo}}" alt="{{brand.name}}" class="activator">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">{{brand.name}}
+            </span>
+          </div>
+          <div class="card-action">
+            <div class="row center">
+            <a class="waves-effect waves-light btn activator green">
+              <i class="material-icons">mode_edit</i>
+            </a>
+            <a ng-click="update(brand)" class="waves-effect waves-light btn blue">
+              <i class="material-icons">system_update_alt</i>
+            </a>
+            <a ng-click="delete(brand)" class="waves-effect waves-light btn red">
+              <i class="material-icons">delete</i>
+            </a>
             </div>
-            <div class="pull-right">
-                <button type="submit" class="btn btn-default" ng-click="update(brand)">Update</button>
-                <button type="submit" class="btn btn-danger" ng-click="delete(brand)">Delete</button>
-            </div>
-        </form>
-    </li>
-</ul>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">
+              <div class="input-field">
+                <i class="material-icons right">close</i>
+                <input type="text" ng-model="brand.name" value="{{brand.name}}" placeholder="Nom">
+              </div>
+            </span>
+            <p>
+              <div class="input-field">
+                <input type="text" ng-model="brand.description" value="{{brand.description}}" placeholder="Description">
+              </div>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

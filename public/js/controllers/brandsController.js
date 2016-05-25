@@ -1,6 +1,6 @@
 // Brand CONTROLLER
 function brandsController($scope, brandsService) {
-    $scope.title = "Brand List";
+    $scope.title = "Enseigne";
 
     function load() {
         brandsService.getBrands().then(function (res) {
@@ -16,16 +16,16 @@ function brandsController($scope, brandsService) {
             load();
         });
         $scope.description = "";
-    }
+    };
     $scope.update = function (brand) {
         brandsService.updateBrand(brand._id, brand).then(function (res) {
             load();
         });
-    }
+    };
     $scope.delete = function (brand) {
         brandsService.deleteBrand(brand._id).then(function (res) {
             load();
         });
-    }
+    };
     load();
 }

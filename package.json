@@ -1,7 +1,7 @@
 {
   "name": "goodil_admin",
   "version": "1.0.0",
-  "description": "",
+  "description": "goodil WCS",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,13 +19,10 @@
   "homepage": "https://github.com/IbanGF/goodil_admin#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
-    "csvtojson": "^0.5.3",
     "express": "^4.13.4",
-    "geocodio": "^2.0.0",
     "method-override": "^2.3.5",
     "mongoose": "^4.4.12",
-    "mongoose-geojson-schema": "0.0.2",
-    "morgan": "^1.7.0",
-    "ng-infinite-scroll": "^1.2.1"
+    "mongoose-geojson-schema": "^2.1.0",
+    "morgan": "^1.7.0"
   }
 }

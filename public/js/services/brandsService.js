@@ -13,5 +13,5 @@ function brandsService($http) {
         deleteBrand: function (id) {
             return $http.delete('/brand/' + id);
         }
-    }
-};
+    };
+}

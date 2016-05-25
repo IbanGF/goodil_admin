@@ -6,4 +6,4 @@ module.exports = function (app) {
     app.put('/brand/:id', Brand.updateBrand);
     app.delete('/brand/:id', Brand.deleteBrand);
 
-}
+};

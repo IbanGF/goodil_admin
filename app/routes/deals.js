@@ -5,4 +5,4 @@ module.exports = function (app) {
     app.put('/deal/:id', Deal.updateDeal);
     app.delete('/deal/:id', Deal.deleteDeal);
 
-}
+};

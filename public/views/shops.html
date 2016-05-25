@@ -1,31 +1,84 @@
-<h1>{{title}}</h1>
-<form class="form-inline">
-    <div class="form-group">
-        <input type="text" class="form-control" id="inputMessage" placeholder="Shop name" ng-model="name">
+<div class="container">
+  <div class="row">
+    <div class="card hoverable">
+      <div class="card-content">
+        <span class="card-title">
+          <h4>{{title}}</h4>
+        </span>
+        <div class="input-field">
+          <input type="text" id="shopName" ng-model="addedShop.name">
+          <label for="shopName">Nom:</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="shopAddress" ng-model="addedShop.address">
+          <label for="shopAddress">Adresse:</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="shopLogo" ng-model="addedShop.logo">
+          <label for="shopLogo">Logo:</label>
+        </div>
+        <div class="input-field">
+          <select id="shopBrand" ng-model="addedShop.brand" ng-options="brand.name for brand in brands" material-select watch></select>
+          <label for="shopBrand">Enseigne:</label>
+        </div>
+        <div class="input-field">
+          <input type="number" id="shopCatchment_area_radius" ng-model="addedShop.catchment_area_radius">
+          <label for="shopCatchment_area_radius">Area radius:</label>
+        </div>
+        <a ng-click="add()" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Ajouter</a>
+      </div>
     </div>
-    <div class="form-group">
-        <input type="text" class="form-control" id="inputMessage" placeholder="Shop address" ng-model="address">
-    </div>
-    <div class="form-group">
-        <input type="number" class="form-control" id="inputMessage" placeholder="Area radius" ng-model="catchment_area_radius">
-    </div>
-    <button type="submit" class="btn btn-default" ng-click="add()">Add</button>
-</form>
-<hr>
-<ul class="list-group">
-    <li class="list-group-item" ng-repeat="shop in shops">
-        <form class="form-inline">
-            <div class="form-group">
-                <input type="text" class="form-control" id="inputMessage" ng-model="shop.name">
-                <input type="text" class="form-control" id="inputMessage" ng-model="shop.address">
-                <input type="number" class="form-control" id="inputMessage" ng-model="shop.catchment_area_radius">
-
-                <!--<img src="{{shop.logo}}" style="max-width: 200px;">-->
+    <div class="row">
+      <div class="col s6 m4 l3" ng-repeat="shop in shops">
+        <div class="card medium hoverable">
+          <div class="card-image">
+            <img src="{{shop.logo}}" alt="{{shop.name}}" class="activator">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">{{shop.name}}
+            </span>
+          </div>
+          <div class="card-action">
+            <div class="row center">
+              <a class="waves-effect waves-light btn activator green">
+                <i class="material-icons">mode_edit</i>
+              </a>
+              <a ng-click="update(shop)" class="waves-effect waves-light btn blue">
+                <i class="material-icons">system_update_alt</i>
+              </a>
+              <a ng-click="delete(shop)" class="waves-effect waves-light btn red">
+                <i class="material-icons">delete</i>
+              </a>
             </div>
-            <div class="pull-right">
-                <button type="submit" class="btn btn-default" ng-click="update(shop)">Update</button>
-                <button type="submit" class="btn btn-danger" ng-click="delete(shop)">Delete</button>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">
+              <div class="input-field">
+                <i class="material-icons right">close</i>
+                <input type="text" ng-model="shop.name" value="{{shop.name}}" placeholder="Nom">
+              </div>
+            </span>
+            <p>
+              <h5>Adresse:
+              </h5>
+              {{shop.address[0]}}<br>
+              {{shop.address[1]}}
+            </p>
+            <p>
+              <h5>Enseigne:
+              </h5>
+              {{shop.brand.name}}
+            </p>
+            <div class="input-field">
+              <select data-ng-model="shop.brand" ng-options="brand.name for brand in brands" material-select watch>
+                <option value="" selected>Changer d'enseigne</option>
+              </select>
             </div>
-        </form>
-    </li>
-</ul>
+            <br/>
+            <br/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

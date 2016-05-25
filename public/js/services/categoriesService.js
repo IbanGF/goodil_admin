@@ -13,5 +13,5 @@ function categoriesService($http) {
         deleteCategory: function (id) {
             return $http.delete('/category/' + id);
         }
-    }
-};
+    };
+}

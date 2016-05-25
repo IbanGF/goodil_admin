@@ -5,4 +5,4 @@ module.exports = function (app) {
     app.post('/category', Category.createCategory);
     app.put('/category/:id', Category.updateCategory);
     app.delete('/category/:id', Category.deleteCategory);
-}
+};

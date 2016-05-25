@@ -1,25 +1,47 @@
+body, html {
+  width: 100%;
+  height: 100%;
+}
 body {
-    padding-top: 70px;
+  background: #ebeff5;
 }
-
-.navbar-border {
-    border-bottom: 3px solid #F0DB4F;
+header, main, footer {
+  padding-left: 240px;
 }
-
+header ul .logo {
+   background-color: #4F2C86;
+}
+header .collapsible-body ul .active {
+   background-color: #4F2C86 !important;
+}
+header .collapsible-body ul li:hover {
+   background-color: #4F2C86;
+   opacity: 0.5;
+}
+@media only screen and (max-width: 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+main {
+  width: 100%;
+  height: 100%;
+}
+/*.navbar-border {
+  border-bottom: 3px solid #F0DB4F;
+}
 .navbar-header img {
-    transition: 0.4s;
+  transition: 0.4s;
 }
-
 .navbar-header img:hover {
-    transform: rotate(360deg);
-}
+  transform: rotate(360deg);
+}*/
 
-table {
+/*table {
     border-collapse: collapse;
     width: 100%;
     text-align: center;
 }
-
 caption {
     font-weight: bold;
     margin: 2px;
@@ -42,4 +64,100 @@ td {
 th {
     background-color: grey;
     font-size: 20px;
+}*/
+
+.mobile_container {
+  width: 100%;
+  height: 100%;
+}
+.mobile_background {
+  position: relative;
+  width: 100%;
+}
+.mobile_background img{
+  position: relative;
+  top:0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  max-width: 100%;
+}
+.deal_img_container {
+  position: absolute;
+  top: 40.2%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 84%;
+  height: 41%;
+}
+.deal_img {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+.deal_text_container {
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 84%;
+  height: 30%;
+  overflow: hidden;
+}
+.no_margin {
+  margin: 0;
+  padding: 0;
+}
+.first_line {
+  height: 32%;
+  overflow: hidden;
+}
+.deal_title {
+  margin: 0;
+  padding: 0;
+  display: block;
+  margin-top: 1%;
+  font-size: 1em;
+}
+.deal_description {
+  display: block;
+  position: relative;
+  top: 2%;
+  margin: 0;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 0.8em;
+}
+.second_line {
+  margin-top: 1%;
+  height: 12%;
+  overflow: hidden;
+}
+.deal_end_date {
+  margin: 0;
+  padding: 0;
+  margin-top: 2%;
+  font-size: 0.7em;
+}
+.deal_shop_name {
+  margin: 0;
+  padding: 0;
+  margin-top: 2%;
+  padding-left: 5%;
+  font-size: 0.7em;
+}
+.third_line {
+  height: 24%;
+  overflow: hidden;
+}
+.deal_mentions_legales {
+  margin-top: 3%;
+  font-size: 0.6em;
+  overflow: hidden;
+}
+.deal_shop_address {
+  margin-top: 4%;
+  padding-left: 11%;
+  font-size: 0.4em;
 }

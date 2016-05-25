@@ -1,7 +1,5 @@
-var BV = require('../models/bv.js');
+var BassinDeVie = require('../models/bv.js');
 module.exports = function (app) {
-    app.get('/AllBV/:page', BV.findAllBV);
-    app.get('/OneBV', BV.findOneBV);
-    /*app.get('/Geocode', BV.geocodeCities);*/
-    /*app.post('/addBVFile', BV.addBVFile);*/
-}
+    app.get('/findAllBVs/:page', BassinDeVie.findAllBVs);
+    app.get('/findOneBV/:codePostal', BassinDeVie.findOneBV);
+};

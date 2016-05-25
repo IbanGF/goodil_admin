@@ -4,4 +4,4 @@ module.exports = function (app) {
     app.put('/user/:id', User.updateUser); // mettre
     app.get('/user', User.findAllUsers); // obtenir
     app.delete('/user/:id', User.deleteUser); // supprimez
-}
+};
