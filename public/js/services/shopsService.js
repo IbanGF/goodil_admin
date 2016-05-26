@@ -13,8 +13,8 @@ function shopsService($http) {
         updateShop: function (id, data) {
             return $http.put('/shop/' + id, data);
         },
-        deleteShop: function (id) {
-            return $http.delete('/shop/' + id);
+        deleteShop: function (id, brand_id) {
+            return $http.delete('/shop/' + id + '/' + brand_id);
         }
     };
 }

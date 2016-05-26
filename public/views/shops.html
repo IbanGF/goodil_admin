@@ -6,12 +6,8 @@
           <h4>{{title}}</h4>
         </span>
         <div class="input-field">
-          <input type="text" id="shopName" ng-model="addedShop.name">
-          <label for="shopName">Nom:</label>
-        </div>
-        <div class="input-field">
-          <input type="text" id="shopAddress" ng-model="addedShop.address">
-          <label for="shopAddress">Adresse:</label>
+          <input type="text" id="shop" ng-model="addedShop.shop" ng-autocomplete options="{types: 'establishment'}"  details="addedShop.details">
+          <label for="shop">Magasin:</label>
         </div>
         <div class="input-field">
           <input type="text" id="shopLogo" ng-model="addedShop.logo">
@@ -62,7 +58,9 @@
               <h5>Adresse:
               </h5>
               {{shop.address[0]}}<br>
-              {{shop.address[1]}}
+              {{shop.address[1]}}<br>
+              {{shop.address[2]}}<br>
+              {{shop.address[3]}}
             </p>
             <p>
               <h5>Enseigne:

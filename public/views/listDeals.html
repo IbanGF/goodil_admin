@@ -1,28 +1,96 @@
 <div class="container">
   <div class="row">
-    {{title}}
-    <div class="card-panel hoverable">
-      <ul class="collapsible popout" data-collapsible="accordion" watch>
-        <li ng-repeat="category in categories">
-          <div class="collapsible-header">
-            <img src="{{category.logo}}" alt="{{category.name}}" class="circle" width="40">
-            {{category.name}}
-          </div>
-          <div class="collapsible-body">
+    <div class="col s12">
+      <div class="card-panel hoverable">
+        <span class="card-title">
+          <h4>{{title}}</h4>
+        </span>
+        <ul class="tabs" tabs>
+          <li class="tab col s6">
+            <a class="active" href="#categories">Catégories</a>
+          </li>
+          <li class="tab col s6">
+            <a href="#shops">Magasins</a>
+          </li>
+        </ul>
+        <div id="categories">
+          <ul class="collapsible popout" data-collapsible="accordion" watch>
+            <li ng-repeat="category in categories">
+              <div class="collapsible-header">
+                <img src="{{category.logo}}" alt="{{category.name}}" class="circle" width="40">
+                {{category.name}}
+              </div>
+              <div class="collapsible-body">
+                <ul class="collapsible popout" data-collapsible="accordion" watch>
+                  <li ng-repeat="subCategory in category.subCategories">
+                    <div class="collapsible-header" ng-click="getDealsInSubCategory(subCategory._id)">
+                      <img src="{{subCategory.logo}}" alt="{{subCategory.name}}" class="circle" width="40">
+                      {{subCategory.name}}
+                    </div>
+                    <div class="collapsible-body">
+                      <div class="row">
+                        <div class="col s6 m4 l3" ng-repeat="deal in dealsInSubCategory">
+                          <div class="card medium hoverable">
+                            <div class="card-image">
+                              <img src="{{deal.image}}" alt="{{deal.name}}" class="activator">
+                            </div>
+                            <div class="card-content">
+                              <span class="card-title grey-text text-darken-4">{{deal.name}}
+                              </span>
+                              <p>
+                                {{deal.description}}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div id="shops">
             <ul class="collapsible popout" data-collapsible="accordion" watch>
-              <li ng-repeat="subCategory in category.subCategories">
+              <li ng-repeat="brand in brands">
                 <div class="collapsible-header">
-                  <img src="{{subCategory.logo}}" alt="{{subCategory.name}}" class="circle" width="40">
-                  {{subCategory.name}}
+                  <img src="{{brand.logo}}" alt="{{brand.name}}" class="circle" width="40">
+                  {{brand.name}}
                 </div>
                 <div class="collapsible-body">
-                  {{deals.name}}
+                  <ul class="collapsible popout" data-collapsible="accordion" watch>
+                    <li ng-repeat="shop in brand.shops">
+                      <div class="collapsible-header" ng-click="getDealsInShop(shop._id)">
+                        <img src="{{shop.logo}}" alt="{{shop.name}}" class="circle" width="40">
+                        {{shop.name}}
+                      </div>
+                      <div class="collapsible-body">
+                        <div class="row">
+                          <div class="col s6 m4 l3" ng-repeat="deal in dealsInShop">
+                            <div class="card medium hoverable">
+                              <div class="card-image">
+                                <img src="{{deal.image}}" alt="{{deal.name}}" class="activator">
+                              </div>
+                              <div class="card-content">
+                                <span class="card-title grey-text text-darken-4">{{deal.name}}
+                                </span>
+                                <p>
+                                  {{deal.description}}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
               </li>
             </ul>
-          </div>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 </div>

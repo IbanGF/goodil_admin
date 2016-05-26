@@ -70,16 +70,17 @@ var BassinDeVie = {
   },
 
   findOneBV: function(req, res) {
+    console.log('cp :' + req.params.codePostal);
     BassinDeVie.model.findOne({
         CodePostal: Number(req.params.codePostal)
       },
-      function(err, bv) {
+      function(err, data) {
         if (err) {
           console.log(err);
           res.send(err);
         } else {
-          console.log(bv);
-          res.send(bv);
+          console.log('data : '+data);
+          res.send(data);
         }
       });
   }

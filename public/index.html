@@ -16,8 +16,8 @@
     <script src="js/libs/lodash.core.min.js"></script>
     <title>Goodil</title>
     <!-- google map -->
-    <script src="https://maps.google.com/maps/api/js"></script>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+    <!-- jquery -->
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
@@ -26,6 +26,8 @@
     <script src="js/libs/angular-route.min.js"></script>
     <!-- angular-materialize -->
     <script src='js/libs/angular-materialize.js'></script>
+    <!-- google places -->
+    <script src="js/libs/ngAutocomplete.js"></script>
     <!-- ngmap -->
     <script src="js/libs/ng-map.min.js"></script>
     <!-- infinite scroll -->
@@ -81,10 +83,10 @@
               <div class="collapsible-body blue-grey darken-2">
                 <ul>
                   <li ng-class="{active: $location.path()=='/'}">
-                    <a href="#/" class="white-text waves-effect waves-purple">Ajouter une offre</a>
+                    <a href="#/" class="white-text waves-effect waves-purple">Ajouter</a>
                   </li>
                   <li ng-class="{active: $location.path()=='/listDeals'}">
-                    <a href="#/listDeals" class="white-text waves-effect waves-purple">Lister les offres</a>
+                    <a href="#/listDeals" class="white-text waves-effect waves-purple">Lister et modifier</a>
                   </li>
                 </ul>
               </div>
@@ -105,9 +107,6 @@
                   </li>
                   <li ng-class="{active: $location.path()=='/categories'}">
                     <a href="#/categories" class="white-text waves-effect waves-purple">Catégories</a>
-                  </li>
-                  <li ng-class="{active: $location.path()=='/subCategories'}">
-                    <a href="#/subCategories" class="white-text waves-effect waves-purple">Sous-catégories</a>
                   </li>
                   <li ng-class="{active: $location.path()=='/bv'}">
                     <a href="#/bv" class="white-text waves-effect waves-purple">Bassin de vie</a>

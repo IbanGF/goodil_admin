@@ -18,7 +18,11 @@ var brandSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  updated_at: Date
+  updated_at: Date,
+  shops: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Shop'
+  }]
 });
 var Brand = {
 
@@ -36,13 +40,16 @@ var Brand = {
       });
   },
   findAllBrands: function(req, res) {
-    Brand.model.find(function(err, data) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send(data);
-      }
-    });
+    Brand.model
+      .find()
+      .populate('shops')
+      .exec(function(err, data) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send(data);
+        }
+      });
   },
   updateBrand: function(req, res) {
     Brand.model.findByIdAndUpdate(req.params.id, {
@@ -63,6 +70,34 @@ var Brand = {
         res.sendStatus(200);
       }
     });
+  },
+  addShopToBrand: function(brand_id, shop_id, res) {
+    Brand.model.findByIdAndUpdate(brand_id, {
+        $push: {
+          shops: shop_id
+        }
+      },
+      function(err) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.sendStatus(200);
+        }
+      });
+  },
+  deleteShopFromBrand: function(brand_id, shop_id, res) {
+    Brand.model.findByIdAndUpdate(brand_id, {
+        $pull: {
+          shops: shop_id
+        }
+      },
+      function(err) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.sendStatus(200);
+        }
+      });
   }
 };
 module.exports = Brand;

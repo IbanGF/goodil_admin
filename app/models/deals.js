@@ -64,6 +64,31 @@ var Deal = {
         }
       });
   },
+  findAllDealsInSubCategory: function(req, res) {
+    Deal.model
+      .find({
+        subCategory: req.params.subCategory
+      }, function(err, deal) {
+        if (!err) {
+          res.send(deal);
+        } else {
+          res.send(err);
+        }
+      });
+  },
+  findAllDealsInShop: function(req, res) {
+    Deal.model
+      .find({
+        shop: req.params.shop
+      }, function(err, deal) {
+        if (!err) {
+          console.log(deal);
+          res.send(deal);
+        } else {
+          res.send(err);
+        }
+      });
+  },
   updateDeal: function(req, res) {
     console.log(req.body);
     Deal.model.findByIdAndUpdate(req.params.id, {

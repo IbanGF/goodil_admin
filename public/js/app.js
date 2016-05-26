@@ -7,7 +7,7 @@ function run($rootScope, $location) {
   });
 }
 
-angular.module('app', ['ngRoute', 'infinite-scroll', 'ui.materialize', 'flow', 'ngMap'])
+angular.module('app', ['ngRoute', 'infinite-scroll', 'ui.materialize', 'flow', 'ngMap', 'ngAutocomplete'])
   .config(routes)
   .controller('navBarController', navBarController)
   .controller('addDealController', addDealController)
@@ -16,7 +16,6 @@ angular.module('app', ['ngRoute', 'infinite-scroll', 'ui.materialize', 'flow', '
   .controller('shopsController', shopsController)
   .controller('bvController', bvController)
   .controller('categoriesController', categoriesController)
-  .controller('subCategoriesController', subCategoriesController)
   .controller('usersController', usersController)
   .controller('dashboardController', dashboardController)
   .service('brandsService', brandsService)

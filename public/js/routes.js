@@ -28,10 +28,6 @@ function routes($routeProvider) {
       templateUrl: 'views/categories.html',
       controller: 'categoriesController'
     })
-    .when('/subCategories', {
-      templateUrl: 'views/subCategories.html',
-      controller: 'subCategoriesController'
-    })
     .when('/users', {
       templateUrl: 'views/users.html',
       controller: 'usersController'

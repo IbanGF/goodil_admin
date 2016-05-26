@@ -23,6 +23,7 @@
     "method-override": "^2.3.5",
     "mongoose": "^4.4.12",
     "mongoose-geojson-schema": "^2.1.0",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "ng-autocomplete": "^1.0.0"
   }
 }

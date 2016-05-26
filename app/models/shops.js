@@ -1,6 +1,7 @@
 // MODEL TODO
 var GeoJSON = require('mongoose-geojson-schema');
 var mongoose = require('mongoose');
+var Brand = require('../models/brands.js');
 var shopSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -37,7 +38,7 @@ var Shop = {
       req.body,
       function(err, data) {
         if (!err) {
-          res.sendStatus(200);
+          Brand.addShopToBrand(req.body.brand, data._id, res);
         } else {
           res.send(err);
         }
@@ -83,7 +84,7 @@ var Shop = {
       if (err) {
         res.send(err);
       } else {
-        res.sendStatus(200);
+        Brand.deleteShopFromBrand(req.params.brand_id, req.params.id, res);
       }
     });
   }

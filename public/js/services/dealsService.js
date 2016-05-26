@@ -1,7 +1,13 @@
 function dealsService($http) {
     return {
         getDeals: function () {
-            return $http.get('/deal');
+            return $http.get('/deals');
+        },
+        getDealsInSubCategory: function (subCategory) {
+            return $http.get('/dealsInSubCategory/' + subCategory);
+        },
+        getDealsInSshop: function (shop) {
+            return $http.get('/dealsInShop/' + shop);
         },
         updateDeal: function (id, deal) {
             return $http.put('/deal/' + id, deal);

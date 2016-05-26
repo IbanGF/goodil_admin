@@ -4,5 +4,5 @@ module.exports = function (app) {
     app.post('/shop', Shop.createShop);
     // app.put('/shopLinkBrand/:id', Shop.linkBrand);
     app.put('/shop/:id', Shop.updateShop);
-    app.delete('/shop/:id', Shop.deleteShop);
+    app.delete('/shop/:id/:brand_id', Shop.deleteShop);
 };

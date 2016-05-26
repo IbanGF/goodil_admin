@@ -1,31 +1,29 @@
-// AddDeal CONTROLLER
-function listDealsController($scope, $http, dealsService, categoriesService) {
-  $scope.title = "List Deals";
+// listDeals CONTROLLER
+function listDealsController($scope, $http, dealsService, categoriesService, brandsService) {
+  $scope.title = "Lister et modifier les offres";
 
-  function load() {
-    dealsService.getDeals().then(function(res) {
-      var deals = res.data;
-
-      // console.log(deals);
-      // var categories = [];
-      // var subCategories = [];
-      // var unique = {};
-      // for (var i in deals) {
-      //   if (typeof(unique[deals[i].subCategory.name]) == "undefined") {
-      //     subCategories.push(deals[i].subCategory.name);
-      //   }
-      //   unique[deals[i].subCategory.name] = 0;
-      // }
-
-      console.log(subCategories);
+  $scope.getDealsInSubCategory = function(subCategory_id) {
+    dealsService.getDealsInSubCategory(subCategory_id).then(function(res) {
+      $scope.dealsInSubCategory = res.data;
+      console.log(dealsInSubCategory);
     });
-  }
+  };
+
+  $scope.getDealsInShop = function(shop_id) {
+    dealsService.getDealsInSshop(shop_id).then(function(res) {
+      $scope.dealsInShop = res.deal;
+      console.log('dealsInShop' + $scope.dealsInShop);
+    });
+  };
 
   categoriesService.getCategories().then(function(res) {
     $scope.categories = res.data;
   });
 
-  load();
+  brandsService.getBrands().then(function(res) {
+    $scope.brands = res.data;
+    console.log($scope.brands);
+  });
 
 
 }

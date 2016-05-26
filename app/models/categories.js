@@ -64,7 +64,7 @@ var Category = {
       }
     });
   },
-  addCategorySubCategories: function(category_id, subCategory_id, res) {
+  addSubCategoriesToCategory: function(category_id, subCategory_id, res) {
     Category.model.findByIdAndUpdate(category_id, {
         $push: {
           subCategories: subCategory_id
@@ -78,7 +78,7 @@ var Category = {
         }
       });
   },
-  deleteCategorySubCategory: function(category_id, subCategory_id, res) {
+  deleteSubCategoryFromCategory: function(category_id, subCategory_id, res) {
     Category.model.findByIdAndUpdate(category_id, {
         $pull: {
           subCategories: subCategory_id

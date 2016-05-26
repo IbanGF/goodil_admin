@@ -26,7 +26,7 @@ var SubCategory = {
       req.body,
       function(err, data) {
         if (!err) {
-          Category.addCategorySubCategories(req.body.category, data._id, res);
+          Category.addSubCategoriesToCategory(req.body.category, data._id, res);
         } else {
           res.send(err);
         }
@@ -61,7 +61,7 @@ var SubCategory = {
       if (err) {
         res.send(err);
       } else {
-        Category.deleteCategorySubCategory(req.params.category_id, req.params.id, res);
+        Category.deleteSubCategoryFromCategory(req.params.category_id, req.params.id, res);
       }
     });
   }

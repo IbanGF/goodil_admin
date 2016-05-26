@@ -39,7 +39,7 @@ function addDealController($scope, $http, shopsService, categoriesService, subCa
     bvService.findOneBV($scope.addedShop.address[1].trim().slice(0, 5)).then(function(res) {
       $scope.addedShop.bassinDeVie = res.data;
       $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' +
-          $scope.addedShop.address.join(',') + '&key=AIzaSyBZVOSPh0Z4mv9jljJWzZNSug6upuec7Sg')
+          $scope.addedShop.address.join(',') + '&key=AIzaSyCzGZv5NhDcGeAHRo-YSb2Lx0byBLpZNgc')
         .then(function(_results) {
             $scope.addedShop.point = {
               type: "Point",
@@ -93,5 +93,6 @@ function addDealController($scope, $http, shopsService, categoriesService, subCa
   $scope.today = 'Aujourd\'hui';
   $scope.clear = 'Rafraichir';
   $scope.close = 'Fermer';
+  $scope.minDate = $scope.deal.start_date;
 
 }

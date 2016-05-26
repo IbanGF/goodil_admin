@@ -20,7 +20,7 @@
       </div>
       <div class="row no_margin third_line">
         <div class="col s7 m7 l7 deal_mentions_legales">
-          {{deal.terme}}
+          {{deal.term}}
         </div>
         <div class="col s4 m4 l4 offset-s1 offset-m1 offset-l1 deal_shop_address">
           {{deal.shop.address[0]}}<br/>
@@ -51,8 +51,8 @@
                   <label for="description">Description:</label>
                 </div>
                 <div class="input-field col s12">
-                  <input type="text" id="terme" ng-model='deal.term'>
-                  <label for="terme">Terme:</label>
+                  <input type="text" id="term" ng-model='deal.term'>
+                  <label for="term">Terme:</label>
                 </div>
                 <div class="input-field col s6">
                   <label for="startDate">Date début:</label>
@@ -84,6 +84,7 @@
                     weekdays-full="{{ weekdaysFull }}"
                     weekdays-short="{{ weekdaysShort }}"
                     weekdays-letter="{{ weekdaysLetter }}"
+                    min="{{ minDate }}"
                     ng-model='deal.end_date'>
                 </div>
               </div>
@@ -122,9 +123,7 @@
                 <option value="" selected>Sélectionnez une boutique</option>
               </select>
               <p ng-show="deal.shop">
-                {{deal.shop.name}}<img src="{{deal.shop.logo}}" width="70" class="right"/><br/>
-                {{deal.shop.address[0]}}<br/>
-                {{deal.shop.address[1]}}
+                {{deal.shop.name}}<img src="{{deal.shop.logo}}" width="70" class="right"/>
               </p>
               <div ng-show="deal.shop.brand">
                 <span class="card-title">
@@ -149,16 +148,33 @@
             <ng-map default-style="false" center="{{centerMap}}" zoom="8">
               <marker position="{{deal.shop.point.coordinates}}" id="{{deal.shop.name}}" title="{{deal.shop.name}}" on-click="showDetail('marker-info')"></marker>
             </ng-map>
+            <div class="card-content">
+              <span class="card-title">
+                Adresse:
+              </span>
+              <p>
+                {{deal.shop.address[0]}}<br/>
+                {{deal.shop.address[1]}}<br/>
+                {{deal.shop.address[2]}}<br/>
+                {{deal.shop.address[3]}}
+              </p>
+              <span class="card-title">
+                Bassin de vie:
+              </span>
+              <p>
+                {{deal.shop.bassinDeVie.BVName}}
+              </p>
+            </div>
           </div>
         </div>
 
-          <div class="row">
-            <div class="card hoverable">
-              <div class="card-content center">
-                <a ng-click="addDeal(deal)" class="btn-large">Ajouter</a>
-              </div>
+        <div class="row">
+          <div class="card hoverable">
+            <div class="card-content center">
+              <a ng-click="addDeal(deal)" class="btn-large">Ajouter</a>
             </div>
           </div>
+        </div>
 
         <div id="addSubCategoryModal" class="modal">
           <div class="modal-content">

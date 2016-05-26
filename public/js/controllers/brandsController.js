@@ -18,6 +18,7 @@ function brandsController($scope, brandsService) {
         $scope.description = "";
     };
     $scope.update = function (brand) {
+      console.log(brand);
         brandsService.updateBrand(brand._id, brand).then(function (res) {
             load();
         });
