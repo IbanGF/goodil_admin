@@ -16,7 +16,7 @@ function dealsService($http) {
             return $http.post('/deal', deal);
         },
         deleteDeal: function (id) {
-            return $http.delete('/deals/' + id);
+            return $http.delete('/deal/' + id);
         }
     };
 }

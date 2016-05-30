@@ -9,14 +9,14 @@ header, main, footer {
   padding-left: 240px;
 }
 header ul .logo {
-   background-color: #4F2C86;
+  background-color: #4F2C86;
 }
 header .collapsible-body ul .active {
-   background-color: #4F2C86 !important;
+  background-color: #4F2C86 !important;
 }
 header .collapsible-body ul li:hover {
-   background-color: #4F2C86;
-   opacity: 0.5;
+  background-color: #4F2C86;
+  opacity: 0.5;
 }
 @media only screen and (max-width: 992px) {
   header, main, footer {
@@ -27,6 +27,14 @@ main {
   width: 100%;
   height: 100%;
 }
+.pac-container {
+  z-index: 100000;
+}
+.user_name {
+  padding-left: 10px;
+  font-size: 1.4em;
+}
+
 /*.navbar-border {
   border-bottom: 3px solid #F0DB4F;
 }
@@ -36,6 +44,7 @@ main {
 .navbar-header img:hover {
   transform: rotate(360deg);
 }*/
+
 
 /*table {
     border-collapse: collapse;
@@ -74,9 +83,9 @@ th {
   position: relative;
   width: 100%;
 }
-.mobile_background img{
+.mobile_background img {
   position: relative;
-  top:0;
+  top: 0;
   left: 50%;
   transform: translate(-50%, 0%);
   max-width: 100%;

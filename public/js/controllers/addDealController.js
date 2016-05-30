@@ -1,8 +1,7 @@
 // AddDeal CONTROLLER
-function addDealController($scope, $http, shopsService, categoriesService, subCategoriesService, brandsService, bvService, dealsService, NgMap) {
+function addDealController($scope, $http, Upload, shopsService, categoriesService, subCategoriesService, brandsService, bvService, dealsService, NgMap) {
   $scope.title = "Add a Deal";
   $scope.deal = {};
-  $scope.addedShop = {};
   $scope.centerMap = 'current-location';
 
   shopsService.getShops().then(function(res) {
@@ -29,28 +28,46 @@ function addDealController($scope, $http, shopsService, categoriesService, subCa
     setTimeout($scope.centerMap = $scope.deal.shop.point.coordinates, 1);
   };
 
+  $scope.upload = function(file) {
+    console.log(file);
+    Upload.upload({
+      url: '/deal/uploadDealImage',
+      file: file
+    }).progress(function(event) {
+      var progressPercentage = parseInt(100.0 * event.loaded / event.total);
+      console.log('progress: ' + progressPercentage + '% ' + event.config.file.name);
+    }).success(function(data, status, headers, config) {
+      console.log('file ' + config.file.name + ' uploaded. Response: ' + JSON.stringify(data));
+      $scope.deal.image = data.path;
+    });
+  };
+
   $scope.addShop = function() {
-    $scope.addedShop.address = $scope.addedShop.address.split(',');
-    $scope.addedShop.brand = $scope.selectedBrand;
-    console.log($scope.addedShop.brand);
-    $scope.addedShop.point = {};
+    var addedShop = {};
+    addedShop.name = $scope.addedShop.details.name;
+    addedShop.address = $scope.addedShop.details.formatted_address.split(',');
+    addedShop.logo = $scope.addedShop.logo;
+    addedShop.brand = $scope.selectedBrand;
+    addedShop.catchment_area_radius = $scope.addedShop.catchment_area_radius;
+    addedShop.point = {};
     $scope.queryError = {};
 
-    bvService.findOneBV($scope.addedShop.address[1].trim().slice(0, 5)).then(function(res) {
-      $scope.addedShop.bassinDeVie = res.data;
+    bvService.findOneBV($scope.addedShop.details.address_components[$scope.addedShop.details.address_components.length - 1].short_name).then(function(res) {
+      addedShop.bassinDeVie = res.data;
       $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' +
-          $scope.addedShop.address.join(',') + '&key=AIzaSyCzGZv5NhDcGeAHRo-YSb2Lx0byBLpZNgc')
+          addedShop.address + '&key=AIzaSyCzGZv5NhDcGeAHRo-YSb2Lx0byBLpZNgc')
         .then(function(_results) {
-            $scope.addedShop.point = {
+            addedShop.point = {
               type: "Point",
               coordinates: [_results.data.results[0].geometry.location.lat, _results.data.results[0].geometry.location.lng]
             };
-            $scope.deal.shop = _.clone($scope.addedShop);
-            console.log('bassin de vie last: ' + $scope.addedShop.bassinDeVie.BVName);
-            console.log($scope.deal.shop);
-            $scope.addedShop.bassinDeVie = $scope.addedShop.bassinDeVie._id;
-            $scope.addedShop.brand = $scope.selectedBrand._id;
-            shopsService.createShop($scope.addedShop).then(function(res) {
+            $scope.deal.shop = _.clone(addedShop);
+            console.log('bassin de vie last: ' + addedShop.bassinDeVie.BVName);
+            console.log('$scope.deal: ' + $scope.deal);
+            console.log('addedShop: ' + addedShop);
+            addedShop.bassinDeVie = addedShop.bassinDeVie._id;
+            addedShop.brand = $scope.selectedBrand._id;
+            shopsService.createShop(addedShop).then(function(res) {
               shopsService.getShops().then(function(res) {
                 $scope.shops = res.data;
               });
@@ -60,6 +77,7 @@ function addDealController($scope, $http, shopsService, categoriesService, subCa
             $scope.queryError = _error;
           });
     });
+    $scope.addedShop = "";
   };
 
   $scope.addSubCategory = function() {

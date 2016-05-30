@@ -1,9 +1,9 @@
 <div class="row mobile_container">
   <div class="col s12 m12 l4 offset-l1 mobile_background">
     <img src="../assets/background/mobile.png" alt="">
-    <div class="deal_img_container" flow-init="{singleFile:true}" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
-      <img flow-btn src="assets/background/upload.png" alt="" class="deal_img" ng-show="!$flow.files.length"/>
-      <img flow-btn flow-img="$flow.files[0]" alt="" class="deal_img" ng-show="$flow.files.length"/>
+    <div class="deal_img_container" ngf-select="upload($file)">
+      <!-- <img flow-btn src="assets/background/upload.png" alt="" class="deal_img" ng-show="!$flow.files.length"/> -->
+      <img src="{{deal.image}}" alt="" class="deal_img" ng-show="deal.image"/>
     </div>
     <div class="deal_text_container">
       <div class="row no_margin first_line">
@@ -148,7 +148,7 @@
             <ng-map default-style="false" center="{{centerMap}}" zoom="8">
               <marker position="{{deal.shop.point.coordinates}}" id="{{deal.shop.name}}" title="{{deal.shop.name}}" on-click="showDetail('marker-info')"></marker>
             </ng-map>
-            <div class="card-content">
+            <div class="card-content" ng-show="deal.shop">
               <span class="card-title">
                 Adresse:
               </span>
@@ -205,13 +205,9 @@
           <div class="modal-content">
             <h4>Boutique</h4>
             <div class="row">
-              <div class="input-field col s12">
-                <input type="text" id="addedShopName" ng-model="addedShop.name">
-                <label for="addedShopName">Nom:</label>
-              </div>
-              <div class="input-field col s12">
-                <input type="text" id="addedShopAddress" ng-model="addedShop.address">
-                <label for="addedShopAddress">Adresse:</label>
+              <div class="input-field">
+                <input type="text" id="addedShopName" ng-model="addedShop.shop" ng-autocomplete options="{types: 'establishment'}" details="addedShop.details">
+                <label for="addedShopName">Magasin:</label>
               </div>
               <div class="input-field col s12">
                 <input type="text" id="addedShopLogo" ng-model="addedShop.logo">

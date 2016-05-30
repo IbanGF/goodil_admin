@@ -7,7 +7,7 @@ function run($rootScope, $location) {
   });
 }
 
-angular.module('app', ['ngRoute', 'infinite-scroll', 'ui.materialize', 'flow', 'ngMap', 'ngAutocomplete'])
+angular.module('app', ['ngRoute', 'infinite-scroll', 'ui.materialize', 'ngFileUpload', 'ngMap', 'ngAutocomplete'])
   .config(routes)
   .controller('navBarController', navBarController)
   .controller('addDealController', addDealController)

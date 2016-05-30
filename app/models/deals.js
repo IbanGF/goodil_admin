@@ -1,4 +1,8 @@
 var mongoose = require('mongoose');
+var formidable = require('formidable');
+var path = require('path');
+var fs = require('fs');
+
 var dealSchema = new mongoose.Schema({
   name: String,
   description: String,
@@ -31,6 +35,24 @@ var dealSchema = new mongoose.Schema({
 var Deal = {
 
   model: mongoose.model('Deal', dealSchema),
+
+  uploadDealImage: function(req, res) {
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files) {
+      var file = files.file;
+      var tempPath = file.path;
+      var targetPath = path.resolve('./public/assets/deals/' + file.name);
+      fs.rename(tempPath, targetPath, function(err) {
+        if (err) {
+          throw err;
+        }
+        console.log("upload complete for deal: " + file.name);
+        return res.json({
+          path: 'assets/deals/' + file.name
+        });
+      });
+    });
+  },
 
   createDeal: function(req, res) {
     console.log(req.body);

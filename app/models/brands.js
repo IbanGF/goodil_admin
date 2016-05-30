@@ -1,4 +1,4 @@
-// MODEL TODO
+// MODEL Brand
 var mongoose = require('mongoose');
 var brandSchema = new mongoose.Schema({
   name: {
@@ -31,7 +31,7 @@ var Brand = {
   createBrand: function(req, res) {
     Brand.model.create(
       req.body,
-      function(err, data) {
+      function(err) {
         if (!err) {
           res.sendStatus(200);
         } else {

@@ -7,10 +7,10 @@
         </span>
         <ul class="tabs" tabs>
           <li class="tab col s6">
-            <a class="active" href="#categories">Catégories</a>
+            <a class="active" ng-init="current='categories'" href="#categories">Catégories</a>
           </li>
           <li class="tab col s6">
-            <a href="#shops">Magasins</a>
+            <a href="#shops" ng-init="current='shops'">Magasins</a>
           </li>
         </ul>
         <div id="categories">
@@ -21,76 +21,62 @@
                 {{category.name}}
               </div>
               <div class="collapsible-body">
-                <ul class="collapsible popout" data-collapsible="accordion" watch>
-                  <li ng-repeat="subCategory in category.subCategories">
-                    <div class="collapsible-header" ng-click="getDealsInSubCategory(subCategory._id)">
-                      <img src="{{subCategory.logo}}" alt="{{subCategory.name}}" class="circle" width="40">
-                      {{subCategory.name}}
-                    </div>
-                    <div class="collapsible-body">
-                      <div class="row">
-                        <div class="col s6 m4 l3" ng-repeat="deal in dealsInSubCategory">
-                          <div class="card medium hoverable">
-                            <div class="card-image">
-                              <img src="{{deal.image}}" alt="{{deal.name}}" class="activator">
-                            </div>
-                            <div class="card-content">
-                              <span class="card-title grey-text text-darken-4">{{deal.name}}
-                              </span>
-                              <p>
-                                {{deal.description}}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+                <div class="collection">
+                  <a href ng-click="getDealsInSubCategory(subCategory._id)" class="collection-item" ng-repeat="subCategory in category.subCategories">
+                    <span class="title"><img src="{{subCategory.logo}}" alt="{{subCategory.name}}" class="circle" width="40">{{subCategory.name}}</span>
+                  </a>
+                </div>
               </div>
             </li>
           </ul>
         </div>
         <div id="shops">
-            <ul class="collapsible popout" data-collapsible="accordion" watch>
-              <li ng-repeat="brand in brands">
-                <div class="collapsible-header">
-                  <img src="{{brand.logo}}" alt="{{brand.name}}" class="circle" width="40">
-                  {{brand.name}}
+          <ul class="collapsible popout" data-collapsible="accordion" watch>
+            <li ng-repeat="brand in brands">
+              <div class="collapsible-header">
+                <img src="{{brand.logo}}" alt="{{brand.name}}" class="circle" width="40">
+                {{brand.name}}
+              </div>
+              <div class="collapsible-body">
+                <div class="collection">
+                  <a href ng-click="getDealsInShop(shop._id)" class="collection-item" ng-repeat="shop in brand.shops">
+                    <span class="title"><img src="{{shop.logo}}" alt="{{shop.name}}" class="circle" width="40">{{shop.name}}</span>
+                  </a>
                 </div>
-                <div class="collapsible-body">
-                  <ul class="collapsible popout" data-collapsible="accordion" watch>
-                    <li ng-repeat="shop in brand.shops">
-                      <div class="collapsible-header" ng-click="getDealsInShop(shop._id)">
-                        <img src="{{shop.logo}}" alt="{{shop.name}}" class="circle" width="40">
-                        {{shop.name}}
-                      </div>
-                      <div class="collapsible-body">
-                        <div class="row">
-                          <div class="col s6 m4 l3" ng-repeat="deal in dealsInShop">
-                            <div class="card medium hoverable">
-                              <div class="card-image">
-                                <img src="{{deal.image}}" alt="{{deal.name}}" class="activator">
-                              </div>
-                              <div class="card-content">
-                                <span class="card-title grey-text text-darken-4">{{deal.name}}
-                                </span>
-                                <p>
-                                  {{deal.description}}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-</div>
+  <div class="row">
+    <div class="col s6 m4 l3" ng-repeat="deal in deals">
+      <div class="card medium hoverable">
+        <div class="card-image">
+          <img src="{{deal.image}}" alt="{{deal.name}}">
+        </div>
+        <div class="card-content">
+          <span class="card-title grey-text text-darken-4">{{deal.name}}
+          </span>
+          <p>
+            {{deal.description}}
+          </p>
+        </div>
+        <div class="card-action">
+          <div class="row center">
+            <a class="waves-effect waves-light btn activator green">
+              <i class="material-icons">mode_edit</i>
+            </a>
+            <a ng-click="update(deal)" class="waves-effect waves-light btn blue">
+              <i class="material-icons">system_update_alt</i>
+            </a>
+            <a ng-click="delete(deal._id)" class="waves-effect waves-light btn red">
+              <i class="material-icons">delete</i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
