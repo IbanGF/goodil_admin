@@ -1,7 +1,7 @@
 node_modules/
 *.DS_Store
-config/database.js
-config/BV.json
-public/index.html
-public/js/app.js
-public/js/routes.js
+#config/database.js
+#config/BV.json
+#public/index.html
+#public/js/app.js
+#public/js/routes.js
