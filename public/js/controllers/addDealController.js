@@ -24,26 +24,34 @@ function addDealController($scope, $http, Upload, shopsService, categoriesServic
     $scope.map = map;
   });
 
-  $scope.changePlace = function() {
-    setTimeout($scope.centerMap = $scope.deal.shop.point.coordinates, 1);
-  };
-
-  $scope.upload = function(file) {
-    console.log(file);
+  $scope.addDeal = function(deal) {
+    var createdDeal = deal;
     Upload.upload({
       url: '/deal/uploadDealImage',
-      file: file
+      file: $scope.file
     }).progress(function(event) {
       var progressPercentage = parseInt(100.0 * event.loaded / event.total);
       console.log('progress: ' + progressPercentage + '% ' + event.config.file.name);
     }).success(function(data, status, headers, config) {
       console.log('file ' + config.file.name + ' uploaded. Response: ' + JSON.stringify(data));
-      $scope.deal.image = data.path;
+      createdDeal.image = data.path;
+      createdDeal.subCategory = deal.subCategory._id;
+      createdDeal.shop = deal.shop._id;
+      console.log(createdDeal);
+      dealsService.createDeal(createdDeal).then(function(res) {
+        console.log('deal created');
+      });
     });
+    $scope.deal = {};
+  };
+
+  $scope.changePlace = function() {
+    setTimeout($scope.centerMap = $scope.deal.shop.point.coordinates, 1);
   };
 
   $scope.addShop = function() {
     var addedShop = {};
+
     addedShop.name = $scope.addedShop.details.name;
     addedShop.address = $scope.addedShop.details.formatted_address.split(',');
     addedShop.logo = $scope.addedShop.logo;
@@ -77,7 +85,7 @@ function addDealController($scope, $http, Upload, shopsService, categoriesServic
             $scope.queryError = _error;
           });
     });
-    $scope.addedShop = "";
+    $scope.addedShop = {};
   };
 
   $scope.addSubCategory = function() {
@@ -89,16 +97,6 @@ function addDealController($scope, $http, Upload, shopsService, categoriesServic
       });
     });
     $scope.addedSubCategory = {};
-  };
-
-  $scope.addDeal = function(deal) {
-    var createdDeal = deal;
-    createdDeal.subCategory = deal.subCategory._id;
-    createdDeal.shop = deal.shop._id;
-    console.log(createdDeal);
-    dealsService.createDeal(createdDeal).then(function(res) {
-      console.log('deal created');
-    });
   };
 
   var currentTime = new Date();

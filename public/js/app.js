@@ -20,7 +20,6 @@ angular.module('app', ['ngRoute', 'infinite-scroll', 'ui.materialize', 'ngFileUp
   .controller('dashboardController', dashboardController)
   .service('brandsService', brandsService)
   .service('shopsService', shopsService)
-  .service('fileInputService', fileInputService)
   .service('bvService', bvService)
   .service('categoriesService', categoriesService)
   .service('subCategoriesService', subCategoriesService)

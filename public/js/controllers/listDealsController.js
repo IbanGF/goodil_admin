@@ -22,17 +22,17 @@ function listDealsController($scope, $http, dealsService, categoriesService, bra
     });
   };
 
-  // function load() {
-  //   if ($scope.selected.name == 'subCategory') {
-  //     dealsService.getDealsInSubCategory($scope.selected.subCategory_id).then(function(res) {
-  //       $scope.deals = res.data;
-  //     });
-  //   } else {
-  //     dealsService.getDealsInSubCategory($scope.selected.shop_id).then(function(res) {
-  //       $scope.deals = res.data;
-  //     });
-  //   }
-  // }
+  function load() {
+    if ($scope.selected.name == 'subCategory') {
+      dealsService.getDealsInSubCategory($scope.selected.id).then(function(res) {
+        $scope.deals = res.data;
+      });
+    } else {
+      dealsService.getDealsInSubCategory($scope.selected.id).then(function(res) {
+        $scope.deals = res.data;
+      });
+    }
+  }
 
   categoriesService.getCategories().then(function(res) {
     $scope.categories = res.data;
@@ -45,6 +45,7 @@ function listDealsController($scope, $http, dealsService, categoriesService, bra
 
   $scope.delete = function(deal_id) {
     dealsService.deleteDeal(deal_id).then(function(res) {
+      load();
     });
   };
 

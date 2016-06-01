@@ -51,21 +51,35 @@
 
 <div id="addBrandModal" class="modal bottom-sheet">
   <div class="modal-content center">
-    <div class="input-field">
-      <input type="text" id="brandName" ng-model="name">
-      <label for="brandName">Nom:</label>
-    </div>
-    <div class="input-field">
-      <input type="text" id="brandDescription" ng-model="description">
-      <label for="brandDescription">description:</label>
-    </div>
-    <div class="input-field">
-      <input type="text" id="brandLogo" ng-model="logo">
-      <label for="brandLogo">Logo:</label>
-    </div>
+    <form name="addBrandForm">
+      <div class="row valign-wrapper">
+        <div class="col s8">
+          <div class="input-field">
+            <input type="text" id="brandName" ng-model="name">
+            <label for="brandName">Nom:</label>
+          </div>
+          <div class="input-field">
+            <input type="text" id="brandDescription" ng-model="description">
+            <label for="brandDescription">description:</label>
+          </div>
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>Logo</span>
+              <input type="file" ngf-select ng-model="logo" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col s4 valign">
+          <img ng-show="addBrandForm.file.$valid" ngf-thumbnail="logo" class="responsive-img"/>
+        </div>
+      </div>
+    </form>
   </div>
   <div class="modal-footer">
-    <a ng-click="add()" class="waves-effect waves-light btn">
+    <a ng-disabled="!addBrand.$valid" ng-click="add(logo)" class="waves-effect waves-light btn">
       <i class="material-icons left">add</i>Ajouter</a>
   </div>
 </div>

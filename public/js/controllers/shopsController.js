@@ -1,5 +1,5 @@
 // Shop CONTROLLER
-function shopsController($scope, $http, shopsService, brandsService, bvService) {
+function shopsController($scope, $http, Upload, shopsService, brandsService, bvService) {
   $scope.title = "Magasin";
   $scope.addedShop = {};
 
@@ -14,35 +14,44 @@ function shopsController($scope, $http, shopsService, brandsService, bvService) 
   }
 
   $scope.add = function() {
-    var data = {};
-    data.name = $scope.addedShop.details.name;
-    data.address = $scope.addedShop.details.formatted_address.split(',');
-    data.logo = $scope.addedShop.logo;
-    data.brand = $scope.addedShop.brand._id;
-    data.catchment_area_radius = $scope.addedShop.catchment_area_radius;
-    console.log($scope.addedShop.details);
-    console.log($scope.addedShop.details.address_components[$scope.addedShop.details.address_components.length - 1].short_name);
+    var addedShop = {};
 
+    addedShop.name = $scope.details.name;
+    addedShop.address = $scope.details.formatted_address.split(',');
+    addedShop.brand = $scope.addedShop.brand._id;
+    addedShop.catchment_area_radius = $scope.addedShop.catchment_area_radius;
+    $scope.addedShop.point = {};
+    $scope.queryError = {};
 
-    bvService.findOneBV($scope.addedShop.details.address_components[$scope.addedShop.details.address_components.length - 1].short_name).then(function(res) {
-      console.log(res);
-      data.bassinDeVie = res.data._id;
-      $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' +
-          data.address.join(',') + '&key=AIzaSyCzGZv5NhDcGeAHRo-YSb2Lx0byBLpZNgc')
-        .then(function(_results) {
-            data.point = {
-              type: "Point",
-              coordinates: [_results.data.results[0].geometry.location.lat, _results.data.results[0].geometry.location.lng]
-            };
-            shopsService.createShop(data).then(function(res) {
-              load();
+    Upload.upload({
+      url: '/brand/uploadBrandImage',
+      file: $scope.addedShop.logo
+    }).progress(function(event) {
+      var progressPercentage = parseInt(100.0 * event.loaded / event.total);
+      console.log('progress: ' + progressPercentage + '% ' + event.config.file.name);
+    }).success(function(data, status, headers, config) {
+      console.log('file ' + config.file.name + ' uploaded. Response: ' + JSON.stringify(data));
+      addedShop.logo = data.path;
+      bvService.findOneBV($scope.details.address_components[$scope.details.address_components.length - 1].short_name).then(function(res) {
+        addedShop.bassinDeVie = res.data._id;
+        $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' +
+            $scope.details.formatted_address + '&key=AIzaSyCzGZv5NhDcGeAHRo-YSb2Lx0byBLpZNgc')
+          .then(function(_results) {
+              addedShop.point = {
+                type: "Point",
+                coordinates: [_results.data.results[0].geometry.location.lat, _results.data.results[0].geometry.location.lng]
+              };
+              console.log(addedShop);
+              shopsService.createShop(addedShop).then(function(res) {
+                load();
+              });
+            },
+            function error(_error) {
+              $scope.queryError = _error;
             });
-          },
-          function error(_error) {
-            $scope.queryError = _error;
-          });
+      });
     });
-    $scope.addedShop = "";
+    $scope.addedShop = {};
   };
 
   $scope.update = function(shop) {

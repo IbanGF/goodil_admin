@@ -8,6 +8,7 @@ function brandsService($http) {
             return $http.put('/brand/' + id, brand);
         },
         createBrand: function (brand) {
+          console.log('hy3');
             return $http.post('/brand', brand);
         },
         deleteBrand: function (id) {

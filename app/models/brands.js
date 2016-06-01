@@ -1,5 +1,8 @@
 // MODEL Brand
 var mongoose = require('mongoose');
+var formidable = require('formidable');
+var path = require('path');
+var fs = require('fs');
 var brandSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -27,6 +30,24 @@ var brandSchema = new mongoose.Schema({
 var Brand = {
 
   model: mongoose.model('Brand', brandSchema),
+
+  uploadBrandImage: function(req, res) {
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files) {
+      var file = files.file;
+      var tempPath = file.path;
+      var targetPath = path.resolve('./public/assets/logos/brands/' + file.name);
+      fs.rename(tempPath, targetPath, function(err) {
+        if (err) {
+          throw err;
+        }
+        console.log("upload complete for Brand: " + file.name);
+        return res.json({
+          path: 'assets/logos/brands/' + file.name
+        });
+      });
+    });
+  },
 
   createBrand: function(req, res) {
     Brand.model.create(
