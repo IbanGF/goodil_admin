@@ -1,24 +1,26 @@
-<ul class="list-group">
-  <div infinite-scroll='nextPage()' infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
-    <table>
-      <caption>{{title}}</caption>
-      <tr>
-        <th class="text-center">Nb</th>
-        <th class="text-center">Code Postal</th>
-        <th class="text-center">Commune</th>
-        <th class="text-center">Coordonnées</th>
-        <th class="text-center">Geo Shape</th>
-        <th class="text-center">Bassin de vie</th>
-      </tr>
-      <tr ng-repeat='city in BVList track by $index'>
-        <td>{{$index+1}}</td>
-        <td>{{city.CodePostal}}</td>
-        <td>{{city.Commune}}</td>
-        <td>{{city.points}}</td>
-        <td>{{city.geo_shape | json}}</td>
-        <td>{{city.BVName}}</td>
-      </tr>
-    </table>
-    <div ng-show='busy'>Loading data...</div>
-  </div>
-</ul>
+<main>
+  <ul class="list-group">
+    <div infinite-scroll='nextPage()' infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
+      <table>
+        <caption>{{title}}</caption>
+        <tr>
+          <th class="text-center">Nb</th>
+          <th class="text-center">Code Postal</th>
+          <th class="text-center">Commune</th>
+          <th class="text-center">Coordonnées</th>
+          <th class="text-center">Geo Shape</th>
+          <th class="text-center">Bassin de vie</th>
+        </tr>
+        <tr ng-repeat='city in BVList track by $index'>
+          <td>{{$index+1}}</td>
+          <td>{{city.CodePostal}}</td>
+          <td>{{city.Commune}}</td>
+          <td>{{city.points}}</td>
+          <td>{{city.geo_shape | json}}</td>
+          <td>{{city.BVName}}</td>
+        </tr>
+      </table>
+      <div ng-show='busy'>Loading data...</div>
+    </div>
+  </ul>
+</main>

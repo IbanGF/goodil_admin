@@ -1,41 +1,16 @@
-<h1>{{Users}}</h1>
-<form class="form-inline">
-    <div class="form-group">
-        <input type="text" class="form-control" id="inputMessage" placeholder="User nickname" ng-model="nickname">
-    </div>
-    <div class="form-group">
-        <input type="text" class="form-control" id="inputMessage" placeholder="User email" ng-model="email">
-    </div>
-    <div class="form-group">
-        <input type="text" class="form-control" id="inputMessage" placeholder="User encrypted_password " ng-model="encrypted_password">
-    </div>
-    <div class="form-group">
-        <input type="text" class="form-control" id="inputMessage" placeholder="User first_name" ng-model="first_name">
-    </div>
-     <div class="form-group">
-        <input type="text" class="form-control" id="inputMessage" placeholder="User last_name" ng-model="last_name">
-    </div>
-
-
-
-
-    <button type="submit" class="btn btn-default" ng-click="add()">Add</button>
-</form>
-<hr>
-<ul class="list-group">
-    <li class="list-group-item" ng-repeat="user in users">
-        <form class="form-inline">
-            <div class="form-group">
-                <input type="text" class="form-control" id="inputMessage" ng-model="user.nickname">
-                <input type="text" class="form-control" id="inputMessage" ng-model="user.email">
-                <input type="text" class="form-control" id="inputMessage" ng-model="user.encrypted_password">
-                <input type="text" class="form-control" id="inputMessage" ng-model="user.first_name">
-                <input type="text" class="form-control" id="inputMessage" ng-model="user.last_name">
-            </div>
-            <div class="pull-right">
-                <button type="submit" class="btn btn-default" ng-click="update(user)">Update</button>
-                <button type="submit" class="btn btn-danger" ng-click="delete(user)">Delete</button>
-            </div>
-        </form>
-    </li>
-</ul>
+<main>
+  <table class="table">
+    <tr>
+      <th>#</th>
+      <th>Nom</th>
+      <th>Admin</th>
+    </tr>
+    <tr ng-repeat="user in users">
+      <td>{{user._id}}</td>
+      <td>{{user.name}}</td>
+      <td>
+        <span class="label label-success" ng-if="user.isAdmin">Administrateur</span>
+      </td>
+    </tr>
+  </table>
+</main>

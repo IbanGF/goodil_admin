@@ -1,147 +1,150 @@
-<div class="container">
-
-  <div class="row">
-    <div class="card-panel hoverable">
-      <ul class="collapsible popout" data-collapsible="accordion" watch>
-        <li ng-repeat="category in categories">
-          <div class="collapsible-header">
-            <img src="{{category.logo}}" alt="{{category.name}}" class="circle" width="40">
-            {{category.name}}
-            <a href='#deleteCategoryModal' ng-click="selectCategory(category)" class="secondary-content" modal>
-              <i class="material-icons">remove</i>
-            </a>
-            <a href='#createCategoryModal' class="secondary-content" modal>
-              <i class="material-icons">add</i>
-            </a>
-            <a href='#updateCategoryModal' ng-click="selectCategory(category)" class="secondary-content" modal>
-              <i class="material-icons">mode_edit</i>
-            </a>
-          </div>
-          <div class="collapsible-body">
-            <div class="row">
-              <div class="col s6 m4 l3">
-                <div class="card medium hoverable valign-wrapper">
-                  <a href='#addSubCategoryModal' ng-click="selectCategory(category)" style="margin-left: auto; margin-right: auto;" modal>
-                    <i class="material-icons large">add</i>
-                  </a>
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="card-panel hoverable">
+        <ul class="collapsible popout" data-collapsible="accordion" watch>
+          <li ng-repeat="category in categories">
+            <div class="collapsible-header">
+              <img src="{{category.logo}}" alt="{{category.name}}" class="circle" width="40">
+              {{category.name}}
+              <a href='#deleteCategoryModal' ng-click="selectCategory(category)" class="secondary-content" modal>
+                <i class="material-icons">remove</i>
+              </a>
+              <a href='#createCategoryModal' class="secondary-content" modal>
+                <i class="material-icons">add</i>
+              </a>
+              <a href='#updateCategoryModal' ng-click="selectCategory(category)" class="secondary-content" modal>
+                <i class="material-icons">mode_edit</i>
+              </a>
+            </div>
+            <div class="collapsible-body">
+              <div class="row">
+                <div class="col s6 m4 l3">
+                  <div class="card medium hoverable valign-wrapper">
+                    <a href='#addSubCategoryModal' ng-click="selectCategory(category)" style="margin-left: auto; margin-right: auto;" modal>
+                      <i class="material-icons large">add</i>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div class="col s6 m4 l3" ng-repeat="subCategory in category.subCategories">
-                <div class="card medium hoverable">
-                  <div class="card-image">
-                    <img src="{{subCategory.logo}}" alt="{{subCategory.name}}" class="activator">
-                  </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">{{subCategory.name}}
-                    </span>
-                  </div>
-                  <div class="card-action">
-                    <div class="row center">
-                      <a class="waves-effect waves-light btn activator green">
-                        <i class="material-icons">mode_edit</i>
-                      </a>
-                      <a ng-click="updateSubCategory(subCategory)" class="waves-effect waves-light btn blue" message="La sous-catégorie: {{subCategory.name}} à bien été mise à jour" duration="2000" toast='click'>
-                        <i class="material-icons">system_update_alt</i>
-                      </a>
-                      <a ng-click="deleteSubCategory(subCategory)" class="waves-effect waves-light btn red" message="La sous-catégorie: {{subCategory.name}} à bien été supprimé" duration="2000" toast='click'>
-                        <i class="material-icons">delete</i>
-                      </a>
+                <div class="col s6 m4 l3" ng-repeat="subCategory in category.subCategories">
+                  <div class="card medium hoverable">
+                    <div class="card-image">
+                      <img src="{{subCategory.logo}}" alt="{{subCategory.name}}" class="activator">
                     </div>
-                  </div>
-                  <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">
-                      <div class="input-field">
-                        <i class="material-icons right">close</i>
-                        <input type="text" ng-model="subCategory.name" value="{{subCategory.name}}" placeholder="Nom">
+                    <div class="card-content">
+                      <span class="card-title activator grey-text text-darken-4">{{subCategory.name}}
+                      </span>
+                    </div>
+                    <div class="card-action">
+                      <div class="row center">
+                        <a class="waves-effect waves-light btn activator green">
+                          <i class="material-icons">mode_edit</i>
+                        </a>
+                        <a ng-click="updateSubCategory(subCategory)" class="waves-effect waves-light btn blue" message="La sous-catégorie: {{subCategory.name}} à bien été mise à jour" duration="2000" toast='click'>
+                          <i class="material-icons">system_update_alt</i>
+                        </a>
+                        <a ng-click="deleteSubCategory(subCategory)" class="waves-effect waves-light btn red" message="La sous-catégorie: {{subCategory.name}} à bien été supprimé" duration="2000" toast='click'>
+                          <i class="material-icons">delete</i>
+                        </a>
                       </div>
-                    </span>
-                    <div class="input-field">
-                      <input type="text" ng-model="subCategory.logo" value="{{subCategory.logo}}" placeholder="logo">
+                    </div>
+                    <div class="card-reveal">
+                      <span class="card-title grey-text text-darken-4">
+                        <div class="input-field">
+                          <i class="material-icons right">close</i>
+                          <input type="text" ng-model="subCategory.name" value="{{subCategory.name}}" placeholder="Nom">
+                        </div>
+                      </span>
+                      <div class="input-field">
+                        <input type="text" ng-model="subCategory.logo" value="{{subCategory.logo}}" placeholder="logo">
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="createCategoryModal" class="modal bottom-sheet">
+      <div class="modal-content center">
+        <h5>Ajouter une catégorie:</h5>
+        <div class="row">
+          <div class="input-field col s8">
+            <input type="text" id="addedCategoryName" ng-model="addedCategory.name">
+            <label for="addedCategoryName">Nom:</label>
           </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <div id="createCategoryModal" class="modal bottom-sheet">
-    <div class="modal-content center">
-      <h5>Ajouter une catégorie:</h5>
-      <div class="row">
-        <div class="input-field col s8">
-          <input type="text" id="addedCategoryName" ng-model="addedCategory.name">
-          <label for="addedCategoryName">Nom:</label>
-        </div>
-        <div class="input-field col s4">
-          <input type="text" id="addedCategoryLogo" ng-model="addedCategory.logo">
-          <label for="addedCategoryLogo">Logo:</label>
+          <div class="input-field col s4">
+            <input type="text" id="addedCategoryLogo" ng-model="addedCategory.logo">
+            <label for="addedCategoryLogo">Logo:</label>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="modal-footer">
-      <a ng-click="addCategory()" class="modal-action modal-close waves-effect waves-green btn-flat" message="La sous-catégorie: {{addedCategory.name}} à bien été ajoutée" duration="2000" toast='click'><i class="material-icons left">add</i>Ajouter</a>
-    </div>
-  </div>
-
-  <div id="updateCategoryModal" class="modal bottom-sheet">
-    <div class="modal-content center">
-      <h5>Vous modifiez la catégorie:</h5>
-      <h4>{{selectedCategory.name}}</h4>
-      <div class="row">
-        <div class="input-field col s12">
-          <input type="text" id="categoryName" ng-model="selectedCategory.name">
-          <label for="categoryName">Nom:</label>
-        </div>
-        <div class="input-field col s12">
-          <input type="text" id="categoryLogo" ng-model="selectedCategory.logo">
-          <label for="categoryLogo">Logo:</label>
-        </div>
+      <div class="modal-footer">
+        <a ng-click="addCategory()" class="modal-action modal-close waves-effect waves-green btn-flat" message="La sous-catégorie: {{addedCategory.name}} à bien été ajoutée" duration="2000" toast='click'>
+          <i class="material-icons left">add</i>Ajouter</a>
       </div>
     </div>
-    <div class="modal-footer">
-      <a ng-click="updateCategory(selectedCategory)" class="modal-action modal-close waves-effect waves-green btn-flat" message="La sous-catégorie: {{subCategory.name}} à bien été mise à jour" duration="2000" toast='click'><i class="material-icons">mode_edit</i>Mettre à jour</a>
-    </div>
-  </div>
 
-  <div id="deleteCategoryModal" class="modal bottom-sheet">
-    <div class="modal-content center">
-      <h5>Supprimer la catégorie:</h5>
-      <h4>{{selectedCategory.name}}</h4>
-      <p>
-        Attention vous vous appretez à supprimer la catégorie:
-        {{selectedCategory.name}}<br/>
-        ainsi que toutes les sous-catégories qu'elle contient.<br/>
-        Voulez vous continuer?
-      </p>
-    </div>
-    <div class="modal-footer">
-      <a class="modal-action modal-close waves-effect waves-green btn-flat green">Annuler</a>
-      <a ng-click="deleteCategory(selectedCategory)" class="modal-action modal-close waves-effect waves-green btn-flat red" message="La catégorie: {{selectedCategory.name}} à bien été supprimée" duration="2000" toast='click'><i class="material-icons">delete</i>Supprimer</a>
-    </div>
-  </div>
-
-  <div id="addSubCategoryModal" class="modal bottom-sheet">
-    <div class="modal-content center">
-      <h5>Ajouter une sous-catégorie à</h5>
-      <h4>{{selectedCategory.name}}</h4>
-      <div class="row">
-        <div class="input-field col s12">
-          <input type="text" id="addedSubCategoryName" ng-model="addedSubCategory.name">
-          <label for="addedSubCategoryName">Nom:</label>
-        </div>
-        <div class="input-field col s12">
-          <input type="text" id="addedSubCategoryLogo" ng-model="addedSubCategory.logo">
-          <label for="addedSubCategoryLogo">Logo:</label>
+    <div id="updateCategoryModal" class="modal bottom-sheet">
+      <div class="modal-content center">
+        <h5>Vous modifiez la catégorie:</h5>
+        <h4>{{selectedCategory.name}}</h4>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" id="categoryName" ng-model="selectedCategory.name">
+            <label for="categoryName">Nom:</label>
+          </div>
+          <div class="input-field col s12">
+            <input type="text" id="categoryLogo" ng-model="selectedCategory.logo">
+            <label for="categoryLogo">Logo:</label>
+          </div>
         </div>
       </div>
+      <div class="modal-footer">
+        <a ng-click="updateCategory(selectedCategory)" class="modal-action modal-close waves-effect waves-green btn-flat" message="La sous-catégorie: {{subCategory.name}} à bien été mise à jour" duration="2000" toast='click'>
+          <i class="material-icons">mode_edit</i>Mettre à jour</a>
+      </div>
     </div>
-    <div class="modal-footer">
-      <a ng-click="addSubCategory()" class="modal-action modal-close waves-effect waves-green btn-flat" message="La sous-catégorie: {{subCategory.name}} à bien été ajoutée" duration="2000" toast='click'>Ajouter</a>
+
+    <div id="deleteCategoryModal" class="modal bottom-sheet">
+      <div class="modal-content center">
+        <h5>Supprimer la catégorie:</h5>
+        <h4>{{selectedCategory.name}}</h4>
+        <p>
+          Attention vous vous appretez à supprimer la catégorie:
+          {{selectedCategory.name}}<br/>
+          ainsi que toutes les sous-catégories qu'elle contient.<br/>
+          Voulez vous continuer?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect waves-green btn-flat green">Annuler</a>
+        <a ng-click="deleteCategory(selectedCategory)" class="modal-action modal-close waves-effect waves-green btn-flat red" message="La catégorie: {{selectedCategory.name}} à bien été supprimée" duration="2000" toast='click'>
+          <i class="material-icons">delete</i>Supprimer</a>
+      </div>
+    </div>
+
+    <div id="addSubCategoryModal" class="modal bottom-sheet">
+      <div class="modal-content center">
+        <h5>Ajouter une sous-catégorie à</h5>
+        <h4>{{selectedCategory.name}}</h4>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" id="addedSubCategoryName" ng-model="addedSubCategory.name">
+            <label for="addedSubCategoryName">Nom:</label>
+          </div>
+          <div class="input-field col s12">
+            <input type="text" id="addedSubCategoryLogo" ng-model="addedSubCategory.logo">
+            <label for="addedSubCategoryLogo">Logo:</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a ng-click="addSubCategory()" class="modal-action modal-close waves-effect waves-green btn-flat" message="La sous-catégorie: {{subCategory.name}} à bien été ajoutée" duration="2000" toast='click'>Ajouter</a>
+      </div>
     </div>
   </div>
-
-</div>
+</main>

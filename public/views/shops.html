@@ -1,104 +1,106 @@
-<div class="container">
-  <div class="row">
+<main>
+  <div class="container">
     <div class="row">
-      <div class="col s6 m4 l3">
-        <div class="card medium hoverable valign-wrapper">
-          <a href="#addShopModal" style="margin-left: auto; margin-right: auto;" modal>
-            <i class="material-icons large">add</i>
-          </a>
+      <div class="row">
+        <div class="col s6 m4 l3">
+          <div class="card medium hoverable valign-wrapper">
+            <a href="#addShopModal" style="margin-left: auto; margin-right: auto;" modal>
+              <i class="material-icons large">add</i>
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="col s6 m4 l3" ng-repeat="shop in shops">
-        <div class="card medium hoverable">
-          <div class="card-image">
-            <img src="{{shop.logo}}" alt="{{shop.name}}" class="activator">
-          </div>
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">{{shop.name}}
-            </span>
-          </div>
-          <div class="card-action">
-            <div class="row center">
-              <a class="waves-effect waves-light btn activator green">
-                <i class="material-icons">mode_edit</i>
-              </a>
-              <a ng-click="update(shop)" class="waves-effect waves-light btn blue">
-                <i class="material-icons">system_update_alt</i>
-              </a>
-              <a ng-click="delete(shop)" class="waves-effect waves-light btn red">
-                <i class="material-icons">delete</i>
-              </a>
+        <div class="col s6 m4 l3" ng-repeat="shop in shops">
+          <div class="card medium hoverable">
+            <div class="card-image">
+              <img src="{{shop.logo}}" alt="{{shop.name}}" class="activator">
             </div>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">
-              <div class="input-field">
-                <i class="material-icons right">close</i>
-                <input type="text" ng-model="shop.name" value="{{shop.name}}" placeholder="Nom">
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">{{shop.name}}
+              </span>
+            </div>
+            <div class="card-action">
+              <div class="row center">
+                <a class="waves-effect waves-light btn activator green">
+                  <i class="material-icons">mode_edit</i>
+                </a>
+                <a ng-click="update(shop)" class="waves-effect waves-light btn blue">
+                  <i class="material-icons">system_update_alt</i>
+                </a>
+                <a ng-click="delete(shop)" class="waves-effect waves-light btn red">
+                  <i class="material-icons">delete</i>
+                </a>
               </div>
-            </span>
-            <p>
-              <h5>Adresse:
-              </h5>
-              {{shop.address[0]}}<br>
-              {{shop.address[1]}}<br>
-              {{shop.address[2]}}<br>
-              {{shop.address[3]}}
-            </p>
-            <p>
-              <h5>Enseigne:
-              </h5>
-              {{shop.brand.name}}
-            </p>
-            <div class="input-field">
-              <select data-ng-model="shop.brand" ng-options="brand.name for brand in brands" material-select watch>
-                <option value="" selected>Changer d'enseigne</option>
-              </select>
             </div>
-            <br/>
-            <br/>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">
+                <div class="input-field">
+                  <i class="material-icons right">close</i>
+                  <input type="text" ng-model="shop.name" value="{{shop.name}}" placeholder="Nom">
+                </div>
+              </span>
+              <p>
+                <h5>Adresse:
+                </h5>
+                {{shop.address[0]}}<br>
+                {{shop.address[1]}}<br>
+                {{shop.address[2]}}<br>
+                {{shop.address[3]}}
+              </p>
+              <p>
+                <h5>Enseigne:
+                </h5>
+                {{shop.brand.name}}
+              </p>
+              <div class="input-field">
+                <select data-ng-model="shop.brand" ng-options="brand.name for brand in brands" material-select watch>
+                  <option value="" selected>Changer d'enseigne</option>
+                </select>
+              </div>
+              <br/>
+              <br/>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div id="addShopModal" class="modal bottom-sheet">
-  <div class="modal-content center">
-    <form name="addShopForm">
-      <div class="row valign-wrapper">
-        <div class="col s8">
-          <div class="input-field">
-            <input type="text" id="shop" ng-model="addedShop.shop" ng-autocomplete options="{types: 'establishment'}" details="details">
-            <label for="shop">Magasin:</label>
-          </div>
-          <div class="input-field">
-            <select id="shopBrand" ng-model="addedShop.brand" ng-options="brand.name for brand in brands" material-select watch></select>
-            <label for="shopBrand">Enseigne:</label>
-          </div>
-          <div class="file-field input-field">
-            <div class="btn">
-              <span>Logo</span>
-              <input type="file" ngf-select ng-model="addedShop.logo" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+  <div id="addShopModal" class="modal bottom-sheet">
+    <div class="modal-content center">
+      <form name="addShopForm">
+        <div class="row valign-wrapper">
+          <div class="col s8">
+            <div class="input-field">
+              <input type="text" id="shop" ng-model="addedShop.shop" ng-autocomplete options="{types: 'establishment'}" details="details">
+              <label for="shop">Magasin:</label>
             </div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" type="text">
+            <div class="input-field">
+              <select id="shopBrand" ng-model="addedShop.brand" ng-options="brand.name for brand in brands" material-select watch></select>
+              <label for="shopBrand">Enseigne:</label>
+            </div>
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>Logo</span>
+                <input type="file" ngf-select ng-model="addedShop.logo" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+            <div class="input-field">
+              <input type="number" id="shopCatchment_area_radius" ng-model="addedShop.catchment_area_radius">
+              <label for="shopCatchment_area_radius">Area radius:</label>
             </div>
           </div>
-          <div class="input-field">
-            <input type="number" id="shopCatchment_area_radius" ng-model="addedShop.catchment_area_radius">
-            <label for="shopCatchment_area_radius">Area radius:</label>
+          <div class="col s4 valign">
+            <img ng-show="addShopForm.addedShop.logo.$valid" ngf-thumbnail="addedShop.logo" class="responsive-img"/>
           </div>
         </div>
-        <div class="col s4 valign">
-          <img ng-show="addShopForm.addedShop.logo.$valid" ngf-thumbnail="addedShop.logo" class="responsive-img"/>
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a ng-click="add()" class="waves-effect waves-light btn">
+        <i class="material-icons left">add</i>Ajouter</a>
+    </div>
   </div>
-  <div class="modal-footer">
-    <a ng-click="add()" class="waves-effect waves-light btn">
-      <i class="material-icons left">add</i>Ajouter</a>
-  </div>
-</div>
+</main>

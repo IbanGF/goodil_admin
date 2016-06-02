@@ -57,33 +57,22 @@ function addDealController($scope, $http, Upload, shopsService, categoriesServic
     addedShop.logo = $scope.addedShop.logo;
     addedShop.brand = $scope.selectedBrand;
     addedShop.catchment_area_radius = $scope.addedShop.catchment_area_radius;
-    addedShop.point = {};
-    $scope.queryError = {};
+    addedShop.point = {
+      type: "Point",
+      coordinates: [$scope.addedShop.details.geometry.location.lat(), $scope.addedShop.details.geometry.location.lng()]
+    };
 
     bvService.findOneBV($scope.addedShop.details.address_components[$scope.addedShop.details.address_components.length - 1].short_name).then(function(res) {
       addedShop.bassinDeVie = res.data;
-      $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' +
-          addedShop.address + '&key=AIzaSyCzGZv5NhDcGeAHRo-YSb2Lx0byBLpZNgc')
-        .then(function(_results) {
-            addedShop.point = {
-              type: "Point",
-              coordinates: [_results.data.results[0].geometry.location.lat, _results.data.results[0].geometry.location.lng]
-            };
-            $scope.deal.shop = _.clone(addedShop);
-            console.log('bassin de vie last: ' + addedShop.bassinDeVie.BVName);
-            console.log('$scope.deal: ' + $scope.deal);
-            console.log('addedShop: ' + addedShop);
-            addedShop.bassinDeVie = addedShop.bassinDeVie._id;
-            addedShop.brand = $scope.selectedBrand._id;
-            shopsService.createShop(addedShop).then(function(res) {
-              shopsService.getShops().then(function(res) {
-                $scope.shops = res.data;
-              });
-            });
-          },
-          function error(_error) {
-            $scope.queryError = _error;
-          });
+      $scope.deal.shop = _.clone(addedShop);
+      console.log('addedShop: ' + addedShop);
+      addedShop.bassinDeVie = addedShop.bassinDeVie._id;
+      addedShop.brand = $scope.selectedBrand._id;
+      shopsService.createShop(addedShop).then(function(res) {
+        shopsService.getShops().then(function(res) {
+          $scope.shops = res.data;
+        });
+      });
     });
     $scope.addedShop = {};
   };

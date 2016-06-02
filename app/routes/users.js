@@ -1,7 +1,21 @@
-var User = require('../models/users.js');
-module.exports = function (app) {
-    app.post('/user', User.createUser); // poster
-    app.put('/user/:id', User.updateUser); // mettre
-    app.get('/user', User.findAllUsers); // obtenir
-    app.delete('/user/:id', User.deleteUser); // supprimez
+
+/* ------------------------------------------------------------------------- *\
+	 						   ROUTES USERS
+\* ------------------------------------------------------------------------- */
+
+var User = require('../models/user.js');
+var Auth = require('../middlewares/authorization.js');
+
+module.exports 	= function(app) {
+
+	app.get('/api/users', Auth.user.isAdministrator, User.findAll);
+
+	app.get('/api/users/:id', Auth.user.isAdministrator, User.findById);
+
+	app.post('/api/users', User.create);
+
+	app.put('/api/users/:id', Auth.user.isAdministrator, User.update);
+
+	app.delete('/api/users/:id', Auth.user.isAdministrator, User.delete);
+
 };

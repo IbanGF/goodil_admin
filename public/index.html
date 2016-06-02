@@ -37,7 +37,6 @@
     <!-- ng fu -->
     <script src="js/libs/ng-file-upload.min.js"></script>
     <!-- Controllers -->
-    <script src="js/controllers/navBarController.js"></script>
     <script src="js/controllers/addDealController.js"></script>
     <script src="js/controllers/listDealsController.js"></script>
     <script src="js/controllers/brandsController.js"></script>
@@ -45,6 +44,8 @@
     <script src="js/controllers/bvController.js"></script>
     <script src="js/controllers/categoriesController.js"></script>
     <script src="js/controllers/usersController.js"></script>
+    <script src="js/controllers/connectController.js"></script>
+    <script src="js/controllers/signupController.js"></script>
     <script src="js/controllers/dashboardController.js"></script>
 
     <!-- Services -->
@@ -53,7 +54,8 @@
     <script src="js/services/bvService.js"></script>
     <script src="js/services/categoriesService.js"></script>
     <script src="js/services/subCategoriesService.js"></script>
-    <script src="js/services/usersService.js"></script>
+    <script src="js/services/connectService.js"></script>
+    <script src="js/services/userService.js"></script>
     <script src="js/services/dealsService.js"></script>
     <!-- Factories -->
     <script src="js/factories/bvFactory.js"></script>
@@ -63,9 +65,13 @@
     <script src="js/app.js"></script>
   </head>
   <body>
-    <header ng-controller="navBarController">
+    <!-- <ng-include src="token?'views/nav.html':''"></ng-include> -->
+    <header ng-show="token">
       <nav class="navbar-fixed purple darken-4">
         <div class="nav-wrapper">
+          <a href="#" class="button-collapse" data-activates="nav-mobile" data-sidenav="left" data-closeonclick="false">
+            <i class="material-icons">menu</i>
+          </a>
           <div class="row">
             <div class="col s7">
               <form>
@@ -81,12 +87,12 @@
                   <a href="#/" class="valign-wrapper">
                     <img src="assets/avatars/iban.jpg" class="circle" width="50">
                     <span class="user_name">
-                      Iban Goenaga
+                      {{user}}
                     </span>
                   </a>
                 </li>
                 <li>
-                  <a href="#/">
+                  <a ng-click="logout()">
                     <i class="material-icons">settings_power</i>
                   </a>
                 </li>
@@ -95,20 +101,21 @@
           </div>
         </div>
       </nav>
-      <ul id="slide-out" class="side-nav blue-grey darken-3 fixed">
+      <ul id="nav-mobile" class="side-nav blue-grey darken-3 fixed">
         <li class="logo">
           <a id="logo-container" href="#/" class="brand-logo"><img src="assets/logo goodil/icon.png" alt="Logo goodil" class="responsive-img"/></a>
         </li>
         <li class="no-padding">
           <ul class="collapsible collapsible-accordion">
             <li class="bold">
-              <a class="collapsible-header waves-effect waves-teal white-text"><i class="icon-left ion-ios-pricetags-outline"></i>Offres</a>
+              <a class="collapsible-header waves-effect waves-teal white-text">
+                <i class="icon-left ion-ios-pricetags-outline"></i>Offres</a>
               <div class="collapsible-body blue-grey darken-2">
                 <ul>
-                  <li ng-class="{active: $location.path()=='/'}">
-                    <a href="#/" class="white-text waves-effect waves-purple">Ajouter</a>
+                  <li ng-class="{active: activetab =='/addDeal'}">
+                    <a href="#/addDeal" class="white-text waves-effect waves-purple">Ajouter</a>
                   </li>
-                  <li ng-class="{active: $location.path()=='/listDeals'}">
+                  <li ng-class="{active: activetab =='/listDeals'}">
                     <a href="#/listDeals" class="white-text waves-effect waves-purple">Lister et modifier</a>
                   </li>
                 </ul>
@@ -119,19 +126,20 @@
         <li class="no-padding">
           <ul class="collapsible collapsible-accordion">
             <li class="bold">
-              <a class="collapsible-header waves-effect waves-teal white-text"><i class="material-icons left">list</i>Données</a>
+              <a class="collapsible-header waves-effect waves-teal white-text">
+                <i class="material-icons left">list</i>Données</a>
               <div class="collapsible-body blue-grey darken-2">
                 <ul>
-                  <li ng-class="{active: $location.path()=='/brands'}">
+                  <li ng-class="{active: activetab =='/brands'}">
                     <a href="#/brands" class="white-text waves-effect waves-purple">Enseignes</a>
                   </li>
-                  <li ng-class="{active: $location.path()=='/shops'}">
+                  <li ng-class="{active: activetab =='/shops'}">
                     <a href="#/shops" class="white-text waves-effect waves-purple">Magasins</a>
                   </li>
-                  <li ng-class="{active: $location.path()=='/categories'}">
+                  <li ng-class="{active: activetab =='/categories'}">
                     <a href="#/categories" class="white-text waves-effect waves-purple">Catégories</a>
                   </li>
-                  <li ng-class="{active: $location.path()=='/bv'}">
+                  <li ng-class="{active: activetab =='/bv'}">
                     <a href="#/bv" class="white-text waves-effect waves-purple">Bassin de vie</a>
                   </li>
                 </ul>
@@ -142,13 +150,14 @@
         <li class="no-padding">
           <ul class="collapsible collapsible-accordion">
             <li class="bold">
-              <a class="collapsible-header waves-effect waves-teal white-text"><i class="material-icons left">supervisor_account</i>Administrateurs</a>
+              <a class="collapsible-header waves-effect waves-teal white-text">
+                <i class="material-icons left">supervisor_account</i>Administrateurs</a>
               <div class="collapsible-body blue-grey darken-2">
                 <ul>
-                  <li ng-class="{active: $location.path()=='/users'}">
+                  <li ng-class="{active: activetab =='/users'}">
                     <a href="#/users" class="white-text waves-effect waves-purple">Liste des comptes</a>
                   </li>
-                  <li ng-class="{active: $location.path()=='/shops'}">
+                  <li ng-class="{active: activetab =='/shops'}">
                     <a href="#/shops" class="white-text waves-effect waves-purple">Ajouter un utilisateur</a>
                   </li>
                 </ul>
@@ -158,10 +167,7 @@
         </li>
       </ul>
     </header>
-    <main>
-      <ng-view></ng-view>
-    </main>
+    <ng-view></ng-view>
     <footer></footer>
   </body>
-
 </html>

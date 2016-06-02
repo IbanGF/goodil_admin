@@ -2,10 +2,10 @@
   "name": "goodil_admin",
   "version": "1.0.0",
   "description": "goodil WCS",
-  "main": "server.js",
+  "main": "goodil.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node goodil.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,8 @@
   "dependencies": {
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
+    "express-session": "^1.12.1",
+    "jsonwebtoken": "^7.0.0",
     "formidable": "^1.0.17",
     "method-override": "^2.3.5",
     "mongoose": "^4.4.12",

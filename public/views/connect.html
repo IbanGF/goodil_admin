@@ -1,0 +1,36 @@
+<div class="login full-dimension valign-wrapper">
+  <div class="row valign">
+    <div class="col s6 offset-s3">
+      <div class="card hoverable">
+        <div class="card-image">
+          <img src="assets/logo goodil/icon.png">
+        </div>
+        <div class="card-content center">
+          <div class="input-field col s12" ng-show="(loginMessage.title != '')">
+            <h4>{{loginMessage.title}}</h4>
+            <p>{{loginMessage.message}}</p>
+          </div>
+          <form name="formConnect">
+            <div class="input-field col s12">
+              <input type="text" id="inputName" ng-model="user.name" ng-required="true">
+              <label for="inputName">Login</label>
+            </div>
+            <div class="input-field col s12">
+              <input type="password" id="inputPass" ng-model="user.password" ng-required="true">
+              <label for="inputPass">Password</label>
+            </div>
+            <button type="submit" class="waves-effect waves-light btn-large" ng-disabled="formConnect.$invalid" ng-click="connect()">Se connecter<i class="fa fa-sign-in" aria-hidden="true"></i>
+            </button>
+          </form>
+        </div>
+        <div class="card-action">
+          <div class="row">
+            <div class="col s6 offset-s3 center">
+              <a href="" class="no_margin">Mot de passe oublié ?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
