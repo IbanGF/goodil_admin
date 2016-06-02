@@ -1,10 +1,6 @@
 function routes($routeProvider, $httpProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'views/signup.html',
-      controller: 'signupController'
-    })
-    .when('/login', {
       templateUrl: 'views/connect.html',
       controller: 'connectController'
     })
