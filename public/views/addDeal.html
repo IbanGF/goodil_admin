@@ -147,6 +147,15 @@
               </div>
               <ng-map default-style="false" center="{{centerMap}}" zoom="8">
                 <marker position="{{deal.shop.point.coordinates}}" id="{{deal.shop.name}}" title="{{deal.shop.name}}" on-click="showDetail('marker-info')"></marker>
+                <shape
+                  name="polygon"
+                  paths="{{polygone}}"
+                  stroke-color="#FF0000"
+                  stroke-opacity="0.8"
+                  stroke-weight="2"
+                  fill-color="#FF0000"
+                  fill-opacity="0.35">  
+                </shape>
               </ng-map>
               <div class="card-content" ng-show="deal.shop">
                 <span class="card-title">

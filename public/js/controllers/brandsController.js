@@ -7,13 +7,13 @@ function brandsController($scope, Upload, brandsService) {
       $scope.brands = res.data;
     });
   }
-  $scope.add = function(file) {
+  $scope.add = function() {
     var brand = {};
     brand.name = $scope.name;
     brand.description = $scope.description;
     Upload.upload({
       url: '/brand/uploadBrandImage',
-      file: file
+      file: $scope.logo
     }).progress(function(event) {
       var progressPercentage = parseInt(100.0 * event.loaded / event.total);
       console.log('progress: ' + progressPercentage + '% ' + event.config.file.name);

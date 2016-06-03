@@ -30,6 +30,9 @@ main {
 .pac-container {
   z-index: 100000;
 }
+select option {
+  z-index: 100000;
+}
 .user_name {
   padding-left: 10px;
   font-size: 1.4em;
