@@ -47,6 +47,7 @@ function addDealController($scope, $http, Upload, shopsService, categoriesServic
 
   $scope.changePlace = function() {
     setTimeout($scope.centerMap = $scope.deal.shop.point.coordinates, 1);
+    setTimeout($scope.polygone = $scope.deal.shop.bassinDeVie.geo_shape.coordinates[0], 1);
   };
 
   $scope.addShop = function() {
