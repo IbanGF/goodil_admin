@@ -1,5 +1,5 @@
 // Brand CONTROLLER
-function categoriesController($scope, categoriesService, subCategoriesService) {
+function categoriesController($scope, Upload, categoriesService, subCategoriesService) {
     $scope.title = "Catégories";
 
     function load() {
@@ -13,9 +13,19 @@ function categoriesController($scope, categoriesService, subCategoriesService) {
     };
     $scope.addCategory = function () {
         var addedCategory = {};
-        addedCategory = $scope.addedCategory;
-        categoriesService.createCategory(addedCategory).then(function (res) {
-            load();
+        addedCategory.name = $scope.addedCategory.name;
+        Upload.upload({
+          url: '/brand/uploadBrandImage',
+          file: $scope.addedCategory.logo
+        }).progress(function(event) {
+          var progressPercentage = parseInt(100.0 * event.loaded / event.total);
+          console.log('progress: ' + progressPercentage + '% ' + event.config.file.name);
+        }).success(function(data, status, headers, config) {
+          console.log('file ' + config.file.name + ' uploaded. Response: ' + JSON.stringify(data));
+          addedCategory.logo = data.path;
+          categoriesService.createCategory(addedCategory).then(function (res) {
+              load();
+          });
         });
     };
     $scope.updateCategory = function (category) {
@@ -28,7 +38,7 @@ function categoriesController($scope, categoriesService, subCategoriesService) {
             load();
         });
     };
-    
+
     $scope.addSubCategory = function () {
         var addedSubCategory = {};
         addedSubCategory = $scope.addedSubCategory;

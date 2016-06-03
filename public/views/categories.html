@@ -77,20 +77,32 @@
 
     <div id="createCategoryModal" class="modal bottom-sheet">
       <div class="modal-content center">
-        <h5>Ajouter une catégorie:</h5>
-        <div class="row">
-          <div class="input-field col s8">
-            <input type="text" id="addedCategoryName" ng-model="addedCategory.name">
-            <label for="addedCategoryName">Nom:</label>
+        <form name="addCategoryForm">
+          <h5>Ajouter une catégorie</h5>
+          <div class="row valign-wrapper">
+            <div class="col s8">
+              <div class="input-field">
+                <input type="text" id="addedCategoryName" ng-model="addedCategory.name">
+                <label for="addedCategoryName">Nom:</label>
+              </div>
+              <div class="file-field input-field">
+                <div class="btn">
+                  <span>Logo</span>
+                  <input type="file" ngf-select ng-model="addedCategory.logo" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="col s4 valign">
+              <img ng-show="addCategoryForm.file.$valid" ngf-thumbnail="addedCategory.logo" class="responsive-img"/>
+            </div>
           </div>
-          <div class="input-field col s4">
-            <input type="text" id="addedCategoryLogo" ng-model="addedCategory.logo">
-            <label for="addedCategoryLogo">Logo:</label>
-          </div>
-        </div>
+        </form>
       </div>
       <div class="modal-footer">
-        <a ng-click="addCategory()" class="modal-action modal-close waves-effect waves-green btn-flat" message="La sous-catégorie: {{addedCategory.name}} à bien été ajoutée" duration="2000" toast='click'>
+        <a ng-click="addCategory()" class="modal-action modal-close waves-effect waves-light btn-flat" message="La catégorie: {{addedCategory.name}}, à bien été ajoutée" duration="2000" toast='click'>
           <i class="material-icons left">add</i>Ajouter</a>
       </div>
     </div>
