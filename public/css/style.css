@@ -30,8 +30,8 @@ main {
 .pac-container {
   z-index: 100000;
 }
-select option {
-  z-index: 100000;
+.modal {
+  overflow-y: visible;
 }
 .user_name {
   padding-left: 10px;
