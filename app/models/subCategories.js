@@ -1,5 +1,8 @@
 // MODEL Categories
 var mongoose = require('mongoose');
+var formidable = require('formidable');
+var path = require('path');
+var fs = require('fs');
 var Category = require('../models/categories.js');
 
 var subCategorySchema = new mongoose.Schema({
@@ -20,6 +23,24 @@ var subCategorySchema = new mongoose.Schema({
 var SubCategory = {
 
   model: mongoose.model('SubCategory', subCategorySchema),
+
+  uploadSubCategoryImage: function(req, res) {
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files) {
+      var file = files.file;
+      var tempPath = file.path;
+      var targetPath = path.resolve('./public/assets/subCategories/' + file.name);
+      fs.rename(tempPath, targetPath, function(err) {
+        if (err) {
+          throw err;
+        }
+        console.log("upload complete for sub category: " + file.name);
+        return res.json({
+          path: 'assets/subCategories/' + file.name
+        });
+      });
+    });
+  },
 
   createSubCategory: function(req, res) {
     SubCategory.model.create(

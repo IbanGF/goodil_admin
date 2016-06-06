@@ -72,7 +72,6 @@ var Deal = {
       .populate('shop')
       .populate({
         path: 'subCategory',
-        // Get friends of friends - populate the 'friends' array for every friend
         populate: {
           path: 'category'
         }

@@ -1,5 +1,8 @@
 // MODEL Categories
 var mongoose = require('mongoose');
+var formidable = require('formidable');
+var path = require('path');
+var fs = require('fs');
 var categorySchema = new mongoose.Schema({
   name: {
     type: String,
@@ -19,6 +22,24 @@ var categorySchema = new mongoose.Schema({
 var Category = {
 
   model: mongoose.model('Category', categorySchema),
+
+  uploadCategoryImage: function(req, res) {
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files) {
+      var file = files.file;
+      var tempPath = file.path;
+      var targetPath = path.resolve('./public/assets/categories/' + file.name);
+      fs.rename(tempPath, targetPath, function(err) {
+        if (err) {
+          throw err;
+        }
+        console.log("upload complete for category: " + file.name);
+        return res.json({
+          path: 'assets/categories/' + file.name
+        });
+      });
+    });
+  },
 
   createCategory: function(req, res) {
     Category.model.create(
