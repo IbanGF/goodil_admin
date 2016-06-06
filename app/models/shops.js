@@ -41,14 +41,14 @@ var Shop = {
     form.parse(req, function(err, fields, files) {
       var file = files.file;
       var tempPath = file.path;
-      var targetPath = path.resolve('./public/assets/logos/brands/' + file.name);
+      var targetPath = path.resolve('./public/assets/logos/shops/' + file.name);
       fs.rename(tempPath, targetPath, function(err) {
         if (err) {
           throw err;
         }
         console.log("upload complete for Shop: " + file.name);
         return res.json({
-          path: 'assets/logos/brands/' + file.name
+          path: 'assets/logos/shops/' + file.name
         });
       });
     });
