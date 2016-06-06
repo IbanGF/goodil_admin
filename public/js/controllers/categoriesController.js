@@ -56,7 +56,6 @@ function categoriesController($scope, Upload, categoriesService, subCategoriesSe
   $scope.addSubCategory = function() {
     var addedSubCategory = {};
     addedSubCategory = $scope.addedSubCategory;
-    addedSubCategory.category = $scope.selectedCategory._id;
     Upload.upload({
       url: '/subCategory/uploadSubCategoryImage',
       file: $scope.addedSubCategory.logo
@@ -66,6 +65,7 @@ function categoriesController($scope, Upload, categoriesService, subCategoriesSe
     }).success(function(data, status, headers, config) {
       console.log('file ' + config.file.name + ' uploaded. Response: ' + JSON.stringify(data));
       addedSubCategory.logo = data.path;
+      addedSubCategory.category = $scope.selectedCategory._id;
       console.log(addedSubCategory);
       subCategoriesService.createSubCategory(addedSubCategory).then(function(res) {
         load();
