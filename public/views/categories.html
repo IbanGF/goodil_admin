@@ -109,18 +109,30 @@
 
     <div id="updateCategoryModal" class="modal bottom-sheet">
       <div class="modal-content center">
-        <h5>Vous modifiez la catégorie:</h5>
-        <h4>{{selectedCategory.name}}</h4>
-        <div class="row">
-          <div class="input-field col s12">
-            <input type="text" id="categoryName" ng-model="selectedCategory.name">
-            <label for="categoryName">Nom:</label>
+        <form name="updateCategoryForm">
+          <h5>Vous modifiez la catégorie:</h5>
+          <h4>{{selectedCategory.name}}</h4>
+          <div class="row valign-wrapper">
+            <div class="col s8">
+              <div class="input-field">
+                <input type="text" id="categoryName" ng-model="selectedCategory.name">
+                <label for="categoryName">Nom:</label>
+              </div>
+              <div class="file-field input-field">
+                <div class="btn">
+                  <span>Logo</span>
+                  <input type="file" id="categoryLogo" ngf-select ng-model="selectedCategory.logo" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="col s4 valign">
+              <img ng-show="updateCategoryForm.file.$valid" ngf-thumbnail="selectedCategory.logo" class="responsive-img"/>
+            </div>
           </div>
-          <div class="input-field col s12">
-            <input type="text" id="categoryLogo" ng-model="selectedCategory.logo">
-            <label for="categoryLogo">Logo:</label>
-          </div>
-        </div>
+        </form>
       </div>
       <div class="modal-footer">
         <a ng-click="updateCategory(selectedCategory)" class="modal-action modal-close waves-effect waves-green btn-flat" message="La sous-catégorie: {{subCategory.name}} à bien été mise à jour" duration="2000" toast='click'>
@@ -148,18 +160,30 @@
 
     <div id="addSubCategoryModal" class="modal bottom-sheet">
       <div class="modal-content center">
-        <h5>Ajouter une sous-catégorie à</h5>
-        <h4>{{selectedCategory.name}}</h4>
-        <div class="row">
-          <div class="input-field col s12">
-            <input type="text" id="addedSubCategoryName" ng-model="addedSubCategory.name">
-            <label for="addedSubCategoryName">Nom:</label>
+        <form name="addSubCategoryForm">
+          <h5>Ajouter une sous-catégorie à</h5>
+          <h4>{{selectedCategory.name}}</h4>
+          <div class="row valign-wrapper">
+            <div class="col s8">
+              <div class="input-field">
+                <input type="text" id="addedSubCategoryName" ng-model="addedSubCategory.name">
+                <label for="addedSubCategoryName">Nom:</label>
+              </div>
+              <div class="file-field input-field">
+                <div class="btn">
+                  <span>Logo</span>
+                  <input type="file" id="addedSubCategoryLogo" ngf-select ng-model="addedSubCategory.logo" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="col s4 valign">
+              <img ng-show="addSubCategoryForm.file.$valid" ngf-thumbnail="addedSubCategory.logo" class="responsive-img"/>
+            </div>
           </div>
-          <div class="input-field col s12">
-            <input type="text" id="addedSubCategoryLogo" ng-model="addedSubCategory.logo">
-            <label for="addedSubCategoryLogo">Logo:</label>
-          </div>
-        </div>
+        </form>
       </div>
       <div class="modal-footer">
         <a ng-click="addSubCategory()" class="modal-action modal-close waves-effect waves-green btn-flat" message="La sous-catégorie: {{subCategory.name}} à bien été ajoutée" duration="2000" toast='click'>Ajouter</a>
