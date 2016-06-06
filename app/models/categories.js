@@ -28,14 +28,14 @@ var Category = {
     form.parse(req, function(err, fields, files) {
       var file = files.file;
       var tempPath = file.path;
-      var targetPath = path.resolve('./public/assets/categories/' + file.name);
+      var targetPath = path.resolve('./public/assets/logos/categories/' + file.name);
       fs.rename(tempPath, targetPath, function(err) {
         if (err) {
           throw err;
         }
         console.log("upload complete for category: " + file.name);
         return res.json({
-          path: 'assets/categories/' + file.name
+          path: 'assets/logos/categories/' + file.name
         });
       });
     });

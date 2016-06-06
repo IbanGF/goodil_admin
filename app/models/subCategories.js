@@ -29,14 +29,14 @@ var SubCategory = {
     form.parse(req, function(err, fields, files) {
       var file = files.file;
       var tempPath = file.path;
-      var targetPath = path.resolve('./public/assets/subCategories/' + file.name);
+      var targetPath = path.resolve('./public/assets/logos/subCategories/' + file.name);
       fs.rename(tempPath, targetPath, function(err) {
         if (err) {
           throw err;
         }
         console.log("upload complete for sub category: " + file.name);
         return res.json({
-          path: 'assets/subCategories/' + file.name
+          path: 'assets/logos/subCategories/' + file.name
         });
       });
     });
