@@ -26,7 +26,7 @@ function shopsController($scope, $http, Upload, shopsService, brandsService, bvS
     };
 
     Upload.upload({
-      url: '/shop/uploadBrandImage',
+      url: '/shop/uploadShopImage',
       file: $scope.addedShop.logo
     }).progress(function(event) {
       var progressPercentage = parseInt(100.0 * event.loaded / event.total);

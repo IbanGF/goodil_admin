@@ -104,7 +104,7 @@
                 </select>
                 <div ng-show="deal.subCategory">
                   <span class="card-title">
-                    Categorie
+                    Catégorie
                   </span>
                   <p><img src="{{deal.subCategory.category.logo}}" alt="{{deal.subCategory.category.name}}" class="right" width="40"/>{{deal.subCategory.category.name}}</p>
                 </div>
@@ -147,15 +147,7 @@
               </div>
               <ng-map default-style="false" center="{{centerMap}}" zoom="8">
                 <marker position="{{deal.shop.point.coordinates}}" id="{{deal.shop.name}}" title="{{deal.shop.name}}" on-click="showDetail('marker-info')"></marker>
-                <shape
-                  name="polygon"
-                  paths="{{polygone}}"
-                  stroke-color="#FF0000"
-                  stroke-opacity="0.8"
-                  stroke-weight="2"
-                  fill-color="#FF0000"
-                  fill-opacity="0.35">  
-                </shape>
+                <shape name="polygon" paths="{{polygone}}" stroke-color="#FF0000" stroke-opacity="0.8" stroke-weight="2" fill-color="#FF0000" fill-opacity="0.35"></shape>
               </ng-map>
               <div class="card-content" ng-show="deal.shop">
                 <span class="card-title">
@@ -186,24 +178,36 @@
           </div>
 
           <div id="addSubCategoryModal" class="modal">
-            <div class="modal-content">
-              <h4>Sous-categorie</h4>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input type="text" id="addedSubCategoryName" ng-model="addedSubCategory.name">
-                  <label for="addedSubCategoryName">Nom:</label>
+            <div class="modal-content center">
+              <form name="addSubCategoryForm">
+                <h4>Sous-categorie</h4>
+                <div class="row valign-wrapper">
+                  <div class="col s8">
+                    <div class="input-field">
+                      <input type="text" id="addedSubCategoryName" ng-model="addedSubCategory.name">
+                      <label for="addedSubCategoryName">Nom:</label>
+                    </div>
+                    <div class="input-field">
+                      <select data-ng-model="selectedCategory" ng-options="category.name for category in categories" material-select watch>
+                        <option value="" selected>Sélectionnez une categorie</option>
+                      </select>
+                      <label>Categorie:</label>
+                    </div>
+                    <div class="file-field input-field">
+                      <div class="btn">
+                        <span>Logo</span>
+                        <input type="file" id="addedSubCategoryLogo" ngf-select ng-model="addedSubCategoryLogo" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s4 valign">
+                    <img ng-show="addSubCategoryForm.file.$valid" ngf-thumbnail="addedSubCategoryLogo" class="responsive-img"/>
+                  </div>
                 </div>
-                <div class="input-field col s12">
-                  <input type="text" id="addedSubCategoryLogo" ng-model="addedSubCategory.logo">
-                  <label for="addedSubCategoryLogo">Logo:</label>
-                </div>
-                <div class="input-field col s12">
-                  <select data-ng-model="selectedCategory" ng-options="category.name for category in categories" material-select watch>
-                    <option value="" selected>Sélectionnez une categorie</option>
-                  </select>
-                  <label>Categorie:</label>
-                </div>
-              </div>
+              </form>
             </div>
             <div class="modal-footer">
               <a ng-click="addSubCategory()" class="modal-action modal-close waves-effect waves-green btn-flat" message="La sous-catégorie: {{addedSubCategory.name}}, à bien été ajoutée" duration="2000" toast='click'>Ajouter</a>
@@ -211,26 +215,38 @@
           </div>
 
           <div id="addShopModal" class="modal">
-            <div class="modal-content">
-              <h4>Boutique</h4>
-              <div class="row">
-                <div class="input-field">
-                  <input type="text" id="addedShopName" ng-model="addedShop.shop" ng-autocomplete options="{types: 'establishment'}" details="addedShop.details">
-                  <label for="addedShopName">Magasin:</label>
+            <div class="modal-content center">
+              <form name="addShopForm">
+                <h4>Boutique</h4>
+                <div class="row valign-wrapper">
+                  <div class="col s8">
+                    <div class="input-field">
+                      <input type="text" id="addedShopName" ng-model="addedShop.shop" ng-autocomplete options="{types: 'establishment'}" details="addedShop.details">
+                      <label for="addedShopName">Magasin:</label>
+                    </div>
+                    <div class="input-field">
+                      <select ng-model="selectedBrand" ng-options="brand.name for brand in brands" material-select watch></select>
+                      <label>Enseigne:</label>
+                    </div>
+                    <div class="file-field input-field">
+                      <div class="btn">
+                        <span>Logo</span>
+                        <input type="file" ngf-select ng-model="addedShop.logo" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                      </div>
+                    </div>
+                    <div class="input-field3">
+                      <input type="number" id="addedShopCatchment_area_radius" ng-model="addedShop.catchment_area_radius">
+                      <label for="addedShopCatchment_area_radius">Area radius:</label>
+                    </div>
+                  </div>
+                  <div class="col s4 valign">
+                    <img ng-show="addShopForm.addedShop.logo.$valid" ngf-thumbnail="addedShop.logo" class="responsive-img"/>
+                  </div>
                 </div>
-                <div class="input-field col s12">
-                  <input type="text" id="addedShopLogo" ng-model="addedShop.logo">
-                  <label for="addedShopLogo">Logo:</label>
-                </div>
-                <div class="input-field col s9">
-                  <select ng-model="selectedBrand" ng-options="brand.name for brand in brands" material-select watch></select>
-                  <label>Enseigne:</label>
-                </div>
-                <div class="input-field col s3">
-                  <input type="number" id="addedShopCatchment_area_radius" ng-model="addedShop.catchment_area_radius">
-                  <label for="addedShopCatchment_area_radius">Area radius:</label>
-                </div>
-              </div>
+              </form>
             </div>
             <div class="modal-footer">
               <a ng-click="addShop()" class="modal-action modal-close waves-effect waves-green btn-flat" message="La boutique: {{addedShop.name}}, à bien été ajoutée" duration="2000" toast='click'>Ajouter</a>

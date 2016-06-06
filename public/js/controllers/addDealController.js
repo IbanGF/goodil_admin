@@ -63,30 +63,48 @@ function addDealController($scope, $http, Upload, shopsService, categoriesServic
       coordinates: [$scope.addedShop.details.geometry.location.lat(), $scope.addedShop.details.geometry.location.lng()]
     };
 
-    bvService.findOneBV($scope.addedShop.details.address_components[$scope.addedShop.details.address_components.length - 1].short_name).then(function(res) {
-      addedShop.bassinDeVie = res.data;
-      $scope.deal.shop = _.clone(addedShop);
-      console.log('addedShop: ' + addedShop);
-      addedShop.bassinDeVie = addedShop.bassinDeVie._id;
-      addedShop.brand = $scope.selectedBrand._id;
-      shopsService.createShop(addedShop).then(function(res) {
-        shopsService.getShops().then(function(res) {
-          $scope.shops = res.data;
+    Upload.upload({
+      url: '/shop/uploadShopImage',
+      file: $scope.addedShop.logo
+    }).progress(function(event) {
+      var progressPercentage = parseInt(100.0 * event.loaded / event.total);
+      console.log('progress: ' + progressPercentage + '% ' + event.config.file.name);
+    }).success(function(data, status, headers, config) {
+      addedShop.logo = data.path;
+      bvService.findOneBV($scope.addedShop.details.address_components[$scope.addedShop.details.address_components.length - 1].short_name).then(function(res) {
+        addedShop.bassinDeVie = res.data;
+        $scope.deal.shop = _.clone(addedShop);
+        addedShop.bassinDeVie = addedShop.bassinDeVie._id;
+        addedShop.brand = $scope.selectedBrand._id;
+        shopsService.createShop(addedShop).then(function(res) {
+          $scope.addedShop = {};
+          shopsService.getShops().then(function(res) {
+            $scope.shops = res.data;
+          });
         });
       });
     });
-    $scope.addedShop = {};
   };
 
   $scope.addSubCategory = function() {
-    $scope.deal.subCategory = $scope.addedSubCategory;
-    $scope.addedSubCategory.category_id = $scope.selectedCategory._id;
-    subCategoriesService.createSubCategory($scope.addedSubCategory).then(function(res) {
-      subCategoriesService.getSubCategories().then(function(res) {
-        $scope.subCategories = res.data;
+    Upload.upload({
+      url: '/subCategory/uploadSubCategoryImage',
+      file: $scope.addedSubCategoryLogo
+    }).progress(function(event) {
+      var progressPercentage = parseInt(100.0 * event.loaded / event.total);
+      console.log('progress: ' + progressPercentage + '% ' + event.config.file.name);
+    }).success(function(data, status, headers, config) {
+      console.log('file ' + config.file.name + ' uploaded. Response: ' + JSON.stringify(data));
+      $scope.addedSubCategory.logo = data.path;
+      $scope.deal.subCategory = $scope.addedSubCategory;
+      $scope.addedSubCategory.category = $scope.selectedCategory._id;
+      subCategoriesService.createSubCategory($scope.addedSubCategory).then(function() {
+        $scope.addedSubCategory = {};
+        subCategoriesService.getSubCategories().then(function(res) {
+          $scope.subCategories = res.data;
+        });
       });
     });
-    $scope.addedSubCategory = {};
   };
 
   var currentTime = new Date();
