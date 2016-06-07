@@ -28,6 +28,10 @@ var shopSchema = new mongoose.Schema({
     ref: 'BassinDeVie'
   },
   point: mongoose.Schema.Types.Point,
+  deals: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Deal'
+  }],
   catchment_area_radius: {
     type: Number
   }
@@ -70,6 +74,7 @@ var Shop = {
       .find()
       .populate('brand')
       .populate('bassinDeVie')
+      .populate('deals')
       .exec(function(err, data) {
         if (!err) {
           res.send(data);
@@ -97,6 +102,34 @@ var Shop = {
         Brand.deleteShopFromBrand(req.params.brand_id, req.params.id, res);
       }
     });
+  },
+  addDealToShop: function(shop_id, deal_id, res) {
+    Shop.model.findByIdAndUpdate(shop_id, {
+        $push: {
+          deals: deal_id
+        }
+      },
+      function(err) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.sendStatus(200);
+        }
+      });
+  },
+  deleteDealFromShop: function(shop_id, deal_id, res) {
+    Shop.model.findByIdAndUpdate(shop_id, {
+        $pull: {
+          deals: deal_id
+        }
+      },
+      function(err) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.sendStatus(200);
+        }
+      });
   }
 };
 module.exports = Shop;

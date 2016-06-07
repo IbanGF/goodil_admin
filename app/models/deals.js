@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var formidable = require('formidable');
 var path = require('path');
 var fs = require('fs');
+var Shop = require('../models/shops.js');
 
 var dealSchema = new mongoose.Schema({
   name: String,
@@ -58,11 +59,11 @@ var Deal = {
     console.log(req.body);
     Deal.model.create(
       req.body,
-      function(err) {
+      function(err, data) {
         if (err) {
           res.send(err);
         } else {
-          res.sendStatus(200);
+          Shop.addDealToShop(req.body.shop, data._id, res);
         }
       });
   },
@@ -125,7 +126,7 @@ var Deal = {
   deleteDeal: function(req, res) {
     Deal.model.findByIdAndRemove(req.params.id, function(err) {
       if (err) {
-        res.send(err);
+        Shop.deleteDealFromShop(req.params.category_id, req.params.id, res);
       } else {
         res.sendStatus(200);
       }

@@ -52,7 +52,7 @@ function addDealController($scope, $http, Upload, shopsService, categoriesServic
 
   $scope.addShop = function() {
     var addedShop = {};
-
+    
     addedShop.name = $scope.addedShop.details.name;
     addedShop.address = $scope.addedShop.details.formatted_address.split(',');
     addedShop.logo = $scope.addedShop.logo;
