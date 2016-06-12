@@ -83,6 +83,20 @@ var Shop = {
         }
       });
   },
+  findOneShop: function(req, res) {
+    Shop.model
+      .findById(req.params.subCategory)
+      .populate('brand')
+      .populate('bassinDeVie')
+      .populate('deals')
+      .exec(function(err, data) {
+        if (!err) {
+          res.send(data);
+        } else {
+          res.send(err);
+        }
+      });
+  },
   updateShop: function(req, res) {
     Shop.model.findByIdAndUpdate(req.params.id, {
       $set: req.body
