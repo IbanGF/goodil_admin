@@ -85,7 +85,7 @@ var Shop = {
   },
   findOneShop: function(req, res) {
     Shop.model
-      .findById(req.params.subCategory)
+      .findById(req.params.id)
       .populate('brand')
       .populate('bassinDeVie')
       .populate('deals')
