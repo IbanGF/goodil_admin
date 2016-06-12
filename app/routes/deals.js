@@ -6,6 +6,6 @@ module.exports = function (app) {
     app.post('/deal', Auth.user.isAdministrator, Deal.createDeal);
     app.put('/deal/:id', Auth.user.isAdministrator, Deal.updateDeal);
     app.delete('/deal/:id', Auth.user.isAdministrator, Deal.deleteDeal);
-    app.get('/dealsInSubCategory/:subCategory', Auth.user.isAdministrator, Deal.findAllDealsInSubCategory);
-    app.get('/dealsInShop/:shop', Auth.user.isAdministrator, Deal.findAllDealsInShop);
+    app.get('/dealsInSubCategory/:subCategory', Deal.findAllDealsInSubCategory);
+    app.get('/dealsInShop/:shop', Deal.findAllDealsInShop);
 };
