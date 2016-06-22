@@ -7,5 +7,4 @@ module.exports = function (app) {
     app.post('/brand', Auth.user.isAdministrator, Brand.createBrand);
     app.put('/brand/:id', Auth.user.isAdministrator, Brand.updateBrand);
     app.delete('/brand/:id', Auth.user.isAdministrator, Brand.deleteBrand);
-
 };
