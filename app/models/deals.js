@@ -70,7 +70,7 @@ var Deal = {
   findAllDeals: function(req, res) {
     Deal.model
       .find()
-      .sort('created_at', -1)
+      .sort({'created_at': 'desc'})
       .populate('shop')
       .populate({
         path: 'subCategory',
