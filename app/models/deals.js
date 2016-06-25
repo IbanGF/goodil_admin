@@ -90,7 +90,6 @@ var Deal = {
       });
   },
   findAllDealsInBV: function(req, res) {
-    console.log(req.params.BVCode);
     Deal.model
       .find()
       .populate({
@@ -113,13 +112,13 @@ var Deal = {
       })
       .exec(function(err, deals) {
 
-        console.log(deals);
-
         deals = deals.filter(function(deal) {
             if (deal.shop.bassinDeVie) {
               return deal.shop.bassinDeVie.length;
             }
           });
+
+            console.log(deals);
 
         if (!err) {
           res.send(deals);
