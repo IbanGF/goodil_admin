@@ -113,9 +113,11 @@ var Deal = {
       .exec(function(err, deals) {
 
         deals = deals.filter(function(deal) {
-            return deal.shop.bassinDeVie.length;
+            if (deal.shop.bassinDeVie) {
+              return deal.shop.bassinDeVie.length;
+            }
           });
-          // do stuff with docs
+
         if (!err) {
           res.send(deals);
         } else {
