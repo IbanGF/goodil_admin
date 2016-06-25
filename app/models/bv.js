@@ -72,14 +72,20 @@ var BassinDeVie = {
 
   findAllBVsName: function(req, res) {
 
-    var pipeline = [{
-      "$group": {
-        "code": "$BVCode",
-        "name": {
-          "$addToSet": "$BVName"
-        },
+    var pipeline = [
+      {
+        $project: {
+          BVName: 1,
+          BVCode: 1
+        }
+      },
+      {
+        $group: {
+          code: "$BVCode",
+          name: "$BVName"
+        }
       }
-    }];
+    ];
 
     BassinDeVie.model
       // .find()
