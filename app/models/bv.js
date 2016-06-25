@@ -104,7 +104,7 @@ var BassinDeVie = {
     }, {
       $group: {
         _id: "$BVCode",
-        BVName: 1,
+        name: { $first: "$BVName" }
       }
     }], function(err, result) {
       if (err) {
