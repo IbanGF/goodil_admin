@@ -74,8 +74,8 @@ var BassinDeVie = {
 
     var pipeline = [{
       "$group": {
-        code: "$BVCode",
-        name: {
+        "code": "$BVCode",
+        "name": {
           "$addToSet": "$BVName"
         },
       }
