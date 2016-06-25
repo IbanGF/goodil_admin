@@ -52,7 +52,13 @@ var BassinDeVie = {
     }, {
       $group: {
         _id: "$BVCode",
-        name: { $first: "$BVName" }
+        name: {
+          $first: "$BVName"
+        }
+      }
+    }, {
+      $sort: {
+        name: -1
       }
     }], function(err, data) {
       if (err) {
