@@ -110,10 +110,14 @@ var Deal = {
       .sort({
         'created_at': 'desc'
       })
-      // .populate('subCategory')
-      .exec(function(err, deal) {
+      .exec(function(err, deals) {
+
+        deals = deals.filter(function(deal) {
+            return deal.shop.bassinDeVie.length;
+          });
+          // do stuff with docs
         if (!err) {
-          res.send(deal);
+          res.send(deals);
         } else {
           res.send(err);
         }
