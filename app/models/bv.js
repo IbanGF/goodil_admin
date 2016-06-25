@@ -77,21 +77,6 @@ var BassinDeVie = {
           res.send(data);
         }
       });
-  },
-
-  findAllCitiesByBVCode: function(req, res) {
-    BassinDeVie.model.find({
-        BVCode: Number(req.params.BVCode)
-      },
-      function(err, data) {
-        if (err) {
-          console.log(err);
-          res.send(err);
-        } else {
-          console.log('data : ' + data);
-          res.send(data);
-        }
-      });
   }
 };
 

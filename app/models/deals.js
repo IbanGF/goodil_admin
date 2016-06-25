@@ -77,7 +77,39 @@ var Deal = {
           path: 'category'
         }
       })
-      .sort({'created_at': 'desc'})
+      .sort({
+        'created_at': 'desc'
+      })
+      // .populate('subCategory')
+      .exec(function(err, deal) {
+        if (!err) {
+          res.send(deal);
+        } else {
+          res.send(err);
+        }
+      });
+  },
+  findAllDealsInBV: function(req, res) {
+    Deal.model
+      .find()
+      .populate({
+        path: 'shop',
+        populate: {
+          path: 'bassinDeVie',
+          match: {
+            BVCode: req.params.BVCode
+          }
+        }
+      })
+      .populate({
+        path: 'subCategory',
+        populate: {
+          path: 'category'
+        }
+      })
+      .sort({
+        'created_at': 'desc'
+      })
       // .populate('subCategory')
       .exec(function(err, deal) {
         if (!err) {
