@@ -106,12 +106,12 @@ var BassinDeVie = {
         _id: "$BVCode",
         name: { $first: "$BVName" }
       }
-    }], function(err, result) {
+    }], function(err, data) {
       if (err) {
         console.log(err);
         return;
       }
-      console.log(result);
+      res.send(data);
     });
   },
 
