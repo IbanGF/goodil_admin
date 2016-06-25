@@ -90,15 +90,16 @@ var Deal = {
       });
   },
   findAllDealsInBV: function(req, res) {
+    console.log(req.params.BVCode);
     Deal.model
       .find()
       .populate({
         path: 'shop',
         populate: {
           path: 'bassinDeVie',
-          // match: {
-          //   BVCode: req.params.BVCode
-          // }
+          match: {
+            BVCode: Number(req.params.BVCode)
+          }
         }
       })
       .populate({
