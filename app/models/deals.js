@@ -96,9 +96,9 @@ var Deal = {
         path: 'shop',
         populate: {
           path: 'bassinDeVie',
-          match: {
-            BVCode: req.params.BVCode
-          }
+          // match: {
+          //   BVCode: req.params.BVCode
+          // }
         }
       })
       .populate({
