@@ -69,6 +69,17 @@ var BassinDeVie = {
       });
   },
 
+
+  findAllBVsName: function(req, res) {
+    BassinDeVie.model
+      .find()
+      .distinct('BVName')
+      .exec(function(err, bvs) {
+        console.log(bvs);
+        res.send(bvs);
+      });
+  },
+
   findOneBV: function(req, res) {
     console.log('cp :' + req.params.codePostal);
     BassinDeVie.model.findOne({
@@ -79,7 +90,7 @@ var BassinDeVie = {
           console.log(err);
           res.send(err);
         } else {
-          console.log('data : '+data);
+          console.log('data : ' + data);
           res.send(data);
         }
       });
