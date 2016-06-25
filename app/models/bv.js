@@ -71,13 +71,19 @@ var BassinDeVie = {
 
 
   findAllBVsName: function(req, res) {
+
+    var pipeline = [{
+      "$group": {
+        name: "$BVName",
+        code: "$BVCode"
+      }
+    }];
+
     BassinDeVie.model
       // .find()
       // .distinct('BVName')
-      .aggregate([{
-        name: "$BVName",
-        code: "$BVCode"
-      }], function(err, bvs) {
+      .aggregate(pipeline)
+      .exec(function(err, bvs) {
         console.log(bvs);
         res.send(bvs);
       });
