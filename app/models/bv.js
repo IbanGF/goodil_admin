@@ -86,26 +86,30 @@ var BassinDeVie = {
     }];
 
 
-      // .find()
-      // .distinct('BVName')
-      // .aggregate(pipeline)
-      // .exec(function(err, bvs) {
-      //   console.log(bvs);
-      //   res.send(bvs);
-      // });
+    // .find()
+    // .distinct('BVName')
+    // .aggregate(pipeline)
+    // .exec(function(err, bvs) {
+    //   console.log(bvs);
+    //   res.send(bvs);
+    // });
 
 
-    BassinDeVie.model.aggregate([
-        { $group: {
-            _id: "$BVCode",
-            BVName: "$BVName"
-        }}
-    ], function (err, result) {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        console.log(result);
+    BassinDeVie.model.aggregate([{
+      $project: {
+        name: "$BVName"
+      }
+    }, {
+      $group: {
+        _id: "$BVCode",
+        name: "$BVName"
+      }
+    }], function(err, result) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log(result);
     });
   },
 
