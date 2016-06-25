@@ -74,11 +74,10 @@ var BassinDeVie = {
     BassinDeVie.model
       // .find()
       // .distinct('BVName')
-      .aggregate()
-      .group({
+      .aggregate([{
         name : "$BVName",
         code : "$BVCode"
-      })
+      }])
       .exec(function(err, bvs) {
         console.log(bvs);
         res.send(bvs);
