@@ -97,12 +97,14 @@ var BassinDeVie = {
 
     BassinDeVie.model.aggregate([{
       $project: {
-        name: $BVName
+        _id: 0,
+        BVName: 1,
+        BVCode: 1
       }
     }, {
       $group: {
-        _id: $BVCode,
-        name: { $first: $BVName },
+        _id: "$BVCode",
+        name: "$BVName"
       }
     }], function(err, result) {
       if (err) {
