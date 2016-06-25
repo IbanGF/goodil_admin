@@ -112,6 +112,8 @@ var Deal = {
       })
       .exec(function(err, deals) {
 
+        console.log(deals);
+
         deals = deals.filter(function(deal) {
             if (deal.shop.bassinDeVie) {
               return deal.shop.bassinDeVie.length;
