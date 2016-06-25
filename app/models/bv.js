@@ -58,7 +58,7 @@ var BassinDeVie = {
       }
     }, {
       $sort: {
-        name: -1
+        name: 1
       }
     }], function(err, data) {
       if (err) {
