@@ -85,13 +85,28 @@ var BassinDeVie = {
       }
     }];
 
-    BassinDeVie.model
+
+      // .find()
       // .distinct('BVName')
-      .aggregate(pipeline)
-      .exec(function(err, bvs) {
-        console.log(bvs);
-        res.send(bvs);
-      });
+      // .aggregate(pipeline)
+      // .exec(function(err, bvs) {
+      //   console.log(bvs);
+      //   res.send(bvs);
+      // });
+
+
+    BassinDeVie.model.aggregate([
+        { $group: {
+            _id: "$BVCode",
+            balance: "$BVName"
+        }}
+    ], function (err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log(result);
+    });
   },
 
   findOneBV: function(req, res) {
