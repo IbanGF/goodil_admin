@@ -88,7 +88,7 @@ var BassinDeVie = {
     ];
 
     BassinDeVie.model
-      // .find()
+      .find()
       // .distinct('BVName')
       .aggregate(pipeline)
       .exec(function(err, bvs) {
