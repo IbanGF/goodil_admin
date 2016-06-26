@@ -83,6 +83,32 @@ var Shop = {
         }
       });
   },
+  findAllShopsInBV: function(req, res) {
+    Shop.model
+      .find()
+      .populate('brand')
+      .populate({
+        path: 'bassinDeVie',
+        match: {
+          BVCode: Number(req.params.BVCode)
+        }
+      })
+      .populate('deals')
+      .exec(function(err, shops) {
+
+        shops = shops.filter(function(shop) {
+          if (shop.bassinDeVie) {
+            return shop;
+          }
+        });
+
+        if (!err) {
+          res.send(shops);
+        } else {
+          res.send(err);
+        }
+      });
+  },
   findOneShop: function(req, res) {
     Shop.model
       .findById(req.params.id)
