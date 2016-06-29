@@ -36,7 +36,7 @@
                 <div class="col s6 m4 l3" ng-repeat="subCategory in category.subCategories">
                   <div class="card medium hoverable">
                     <div class="card-image">
-                      <img src="{{subCategory.logo}}" alt="{{subCategory.name}}" class="activator">
+                      <img src="{{category.logo}}" alt="{{category.name}}" class="activator">
                     </div>
                     <div class="card-content">
                       <span class="card-title activator grey-text text-darken-4">{{subCategory.name}}
@@ -62,9 +62,9 @@
                           <input type="text" ng-model="subCategory.name" value="{{subCategory.name}}" placeholder="Nom">
                         </div>
                       </span>
-                      <div class="input-field">
+                      <!-- <div class="input-field">
                         <input type="text" ng-model="subCategory.logo" value="{{subCategory.logo}}" placeholder="logo">
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
