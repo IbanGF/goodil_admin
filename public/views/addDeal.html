@@ -33,7 +33,7 @@
     <div class="col s12 m12 l6">
       <div class="row">
         <div class="col s12 m12 l6">
-          <form name="addDeal">
+          <form name="addDealForm">
             <div class="row">
               <div class="card hoverable">
                 <div class="card-image">
@@ -179,7 +179,7 @@
                 <div ng-show="loading" class="progress">
                   <div class="determinate" style="width: {{progressPercentage}}%"></div>{{progressPercentage}}
                 </div>
-                <a ng-show="!loading" ng-disabled="addDeal.$invalid" ng-click="addDeal(deal)" class="btn-large">Ajouter</a>
+                <a ng-show="!loading" ng-disabled="addDealForm.$invalid" ng-click="addDeal(deal)" class="btn-large">Ajouter</a>
               </div>
             </div>
           </div>
