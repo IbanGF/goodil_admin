@@ -3,6 +3,7 @@ function addDealController($scope, $http, Upload, shopsService, categoriesServic
   $scope.title = "Add a Deal";
   $scope.deal = {};
   $scope.centerMap = 'current-location';
+  $scope.loading = false;
 
   shopsService.getShops().then(function(res) {
     $scope.shops = res.data;
@@ -30,9 +31,11 @@ function addDealController($scope, $http, Upload, shopsService, categoriesServic
       url: '/deal/uploadDealImage',
       file: $scope.file
     }).progress(function(event) {
-      var progressPercentage = parseInt(100.0 * event.loaded / event.total);
-      console.log('progress: ' + progressPercentage + '% ' + event.config.file.name);
+      $scope.loading = true;
+      $scope.progressPercentage = parseInt(100.0 * event.loaded / event.total);
+      console.log('progress: ' + $scope.progressPercentage + '% ' + event.config.file.name);
     }).success(function(data, status, headers, config) {
+      $scope.loading = false;
       console.log('file ' + config.file.name + ' uploaded. Response: ' + JSON.stringify(data));
       createdDeal.image = data.path;
       createdDeal.subCategory = deal.subCategory._id;
@@ -52,7 +55,7 @@ function addDealController($scope, $http, Upload, shopsService, categoriesServic
 
   $scope.addShop = function() {
     var addedShop = {};
-    
+
     addedShop.name = $scope.addedShop.details.name;
     addedShop.address = $scope.addedShop.details.formatted_address.split(',');
     addedShop.logo = $scope.addedShop.logo;
@@ -67,9 +70,11 @@ function addDealController($scope, $http, Upload, shopsService, categoriesServic
       url: '/shop/uploadShopImage',
       file: $scope.addedShop.logo
     }).progress(function(event) {
+      $scope.loading = true;
       var progressPercentage = parseInt(100.0 * event.loaded / event.total);
       console.log('progress: ' + progressPercentage + '% ' + event.config.file.name);
     }).success(function(data, status, headers, config) {
+      $scope.loading = false;
       addedShop.logo = data.path;
       bvService.findOneBV($scope.addedShop.details.address_components[$scope.addedShop.details.address_components.length - 1].short_name).then(function(res) {
         addedShop.bassinDeVie = res.data;

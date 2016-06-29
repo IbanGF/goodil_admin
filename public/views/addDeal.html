@@ -3,7 +3,10 @@
     <div class="col s12 m12 l4 offset-l1 mobile_background">
       <img src="../assets/background/mobile.png" alt="">
       <div class="deal_img_container" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
-        <img ngf-src="file" alt="" class="deal_img"/>
+        <img ng-show="!loading" ngf-src="file" alt="" class="deal_img"/>
+        <div ng-show="loading" class="progress">
+          <div class="determinate" style="width: {{progressPercentage}}%"></div>
+        </div>
       </div>
       <div class="deal_text_container">
         <div class="row no_margin first_line">
