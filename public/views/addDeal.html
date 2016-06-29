@@ -3,10 +3,7 @@
     <div class="col s12 m12 l4 offset-l1 mobile_background">
       <img src="../assets/background/mobile.png" alt="">
       <div class="deal_img_container" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
-        <img ng-show="!loading" ngf-src="file" alt="" class="deal_img"/>
-        <div ng-show="loading" class="progress">
-          <div class="determinate" style="width: {{progressPercentage}}%"></div>
-        </div>
+        <img ngf-src="file" alt="" class="deal_img"/>
       </div>
       <div class="deal_text_container">
         <div class="row no_margin first_line">
@@ -175,7 +172,10 @@
           <div class="row">
             <div class="card hoverable">
               <div class="card-content center">
-                <a ng-click="addDeal(deal)" class="btn-large">Ajouter</a>
+                <div ng-show="loading" class="progress">
+                  <div class="determinate" style="width: {{progressPercentage}}%"></div>
+                </div>
+                <a ng-show="!loading" ng-click="addDeal(deal)" class="btn-large">Ajouter</a>
               </div>
             </div>
           </div>
