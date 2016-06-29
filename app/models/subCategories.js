@@ -57,6 +57,9 @@ var SubCategory = {
     SubCategory.model
       .find()
       .populate('category')
+      .sort({
+        'name': 'desc'
+      })
       .exec(function(err, data) {
         if (!err) {
           res.send(data);
