@@ -75,6 +75,9 @@ var Shop = {
       .populate('brand')
       .populate('bassinDeVie')
       .populate('deals')
+      .sort({
+        'name': 'desc'
+      })
       .exec(function(err, data) {
         if (!err) {
           res.send(data);
@@ -94,6 +97,9 @@ var Shop = {
         }
       })
       .populate('deals')
+      .sort({
+        'name': 'desc'
+      })
       .exec(function(err, shops) {
 
         shops = shops.filter(function(shop) {

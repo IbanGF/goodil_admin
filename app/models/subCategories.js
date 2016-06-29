@@ -11,10 +11,10 @@ var subCategorySchema = new mongoose.Schema({
     maxlength: [128, 'sub categories name can have a maximum of 128 char'],
     required: [true, 'sub categories name required']
   },
-  logo: {
-    type: String,
-    required: [true, 'sub categories logo required']
-  },
+  // logo: {
+  //   type: String,
+  //   required: [true, 'sub categories logo required']
+  // },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category'
