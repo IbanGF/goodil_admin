@@ -33,107 +33,111 @@
     <div class="col s12 m12 l6">
       <div class="row">
         <div class="col s12 m12 l6">
-          <div class="row">
-            <div class="card hoverable">
-              <div class="card-image">
-                <img src="assets/logo goodil/icon.png">
-              </div>
-              <span class="card-title">
-                <div class="input-field col s12">
-                  <label for="title">Titre:</label>
-                  <input type="text" id="title" ng-model='deal.name'>
+          <form name="addDeal">
+            <div class="row">
+              <div class="card hoverable">
+                <div class="card-image">
+                  <img src="assets/logo goodil/icon.png">
                 </div>
-              </span>
-              <div class="card-content">
-                <div class="row">
-                  <div class="input-field col s12">
-                    <textarea class="materialize-textarea" id="description" ng-model='deal.description'></textarea>
-                    <label for="description">Description:</label>
-                  </div>
-                  <div class="input-field col s12">
-                    <input type="text" id="term" ng-model='deal.term'>
-                    <label for="term">Terme:</label>
-                  </div>
-                  <div class="input-field col s6">
-                    <label for="startDate">Date début:</label>
-                    <input
-                      input-date
-                      type="text"
-                      name="startDate"
-                      id="startDate"
-                      container="body"
-                      format="dd/mm/yyyy"
-                      months-full="{{ month }}"
-                      months-short="{{ monthShort }}"
-                      weekdays-full="{{ weekdaysFull }}"
-                      weekdays-short="{{ weekdaysShort }}"
-                      weekdays-letter="{{ weekdaysLetter }}"
-                      ng-model='deal.start_date'>
-                  </div>
-                  <div class="input-field col s6">
-                    <label for="endDate">Date fin:</label>
-                    <input
-                      input-date
-                      type="text"
-                      name="endDate"
-                      id="endDate"
-                      container="body"
-                      format="dd/mm/yyyy"
-                      months-full="{{ month }}"
-                      months-short="{{ monthShort }}"
-                      weekdays-full="{{ weekdaysFull }}"
-                      weekdays-short="{{ weekdaysShort }}"
-                      weekdays-letter="{{ weekdaysLetter }}"
-                      min="{{ minDate }}"
-                      ng-model='deal.end_date'>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="card hoverable">
-              <div class="card-content">
                 <span class="card-title">
-                  Sous-categorie<a href='#addSubCategoryModal' modal>
-                    <i tooltipped class="material-icons right" data-position="top" data-delay="150" data-tooltip="Ajouter une sous-catégorie">add</i>
-                  </a>
+                  <div class="input-field col s12">
+                    <label for="title">Titre:</label>
+                    <input type="text" name="deal_name" id="title" ng-model='deal.name' ng-required="true">
+                  </div>
                 </span>
-                <select id="subCategory" data-ng-model="deal.subCategory" ng-options="subCategory.name for subCategory in subCategories" material-select watch>
-                  <option value="" selected>Sélectionnez une sous-categorie</option>
-                </select>
-                <div ng-show="deal.subCategory">
-                  <span class="card-title">
-                    Catégorie
-                  </span>
-                  <p><img src="{{deal.subCategory.category.logo}}" alt="{{deal.subCategory.category.name}}" class="right" width="40"/>{{deal.subCategory.category.name}}</p>
+                <div class="card-content">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <textarea name="deal_description" class="materialize-textarea" id="description" ng-model='deal.description' ng-required="true"></textarea>
+                      <label for="description">Description:</label>
+                    </div>
+                    <div class="input-field col s12">
+                      <input name="deal_term" type="text" id="term" ng-model='deal.term' ng-required="true">
+                      <label for="term">Terme:</label>
+                    </div>
+                    <div class="input-field col s6">
+                      <label for="startDate">Date début:</label>
+                      <input
+                        input-date
+                        type="text"
+                        name="startDate"
+                        id="startDate"
+                        container="body"
+                        format="dd/mm/yyyy"
+                        months-full="{{ month }}"
+                        months-short="{{ monthShort }}"
+                        weekdays-full="{{ weekdaysFull }}"
+                        weekdays-short="{{ weekdaysShort }}"
+                        weekdays-letter="{{ weekdaysLetter }}"
+                        ng-model='deal.start_date'
+                        ng-required="true">
+                    </div>
+                    <div class="input-field col s6">
+                      <label for="endDate">Date fin:</label>
+                      <input
+                        input-date
+                        type="text"
+                        name="endDate"
+                        id="endDate"
+                        container="body"
+                        format="dd/mm/yyyy"
+                        months-full="{{ month }}"
+                        months-short="{{ monthShort }}"
+                        weekdays-full="{{ weekdaysFull }}"
+                        weekdays-short="{{ weekdaysShort }}"
+                        weekdays-letter="{{ weekdaysLetter }}"
+                        min="{{ minDate }}"
+                        ng-model='deal.end_date'
+                        ng-required="true">
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="card hoverable">
-              <div class="card-content">
-                <span class="card-title">
-                  Boutique<a href='#addShopModal' modal>
-                    <i tooltipped class="material-icons right" data-position="top" data-delay="150" data-tooltip="Ajouter une boutique">add</i>
-                  </a>
-                </span>
-                <select id="shop" data-ng-model="deal.shop" ng-options="shop.name for shop in shops" material-select watch ng-change="changePlace()">
-                  <option value="" selected>Sélectionnez une boutique</option>
-                </select>
-                <p ng-show="deal.shop">
-                  {{deal.shop.name}}<img src="{{deal.shop.logo}}" width="70" class="right"/>
-                </p>
-                <div ng-show="deal.shop.brand">
+            <div class="row">
+              <div class="card hoverable">
+                <div class="card-content">
                   <span class="card-title">
-                    Enseigne
+                    Sous-categorie<a href='#addSubCategoryModal' modal>
+                      <i tooltipped class="material-icons right" data-position="top" data-delay="150" data-tooltip="Ajouter une sous-catégorie">add</i>
+                    </a>
                   </span>
-                  <p>{{deal.shop.brand.name}}<img src="{{deal.shop.brand.logo}}" alt="{{deal.shop.brand.name}}" class="right" width="40"/></p>
+                  <select id="subCategory" data-ng-model="deal.subCategory" ng-options="subCategory.name for subCategory in subCategories" material-select watch>
+                    <option value="" selected>Sélectionnez une sous-categorie</option>
+                  </select>
+                  <div ng-show="deal.subCategory">
+                    <span class="card-title">
+                      Catégorie
+                    </span>
+                    <p><img src="{{deal.subCategory.category.logo}}" alt="{{deal.subCategory.category.name}}" class="right" width="40"/>{{deal.subCategory.category.name}}</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+            <div class="row">
+              <div class="card hoverable">
+                <div class="card-content">
+                  <span class="card-title">
+                    Boutique<a href='#addShopModal' modal>
+                      <i tooltipped class="material-icons right" data-position="top" data-delay="150" data-tooltip="Ajouter une boutique">add</i>
+                    </a>
+                  </span>
+                  <select id="shop" data-ng-model="deal.shop" ng-options="shop.name for shop in shops" material-select watch ng-change="changePlace()">
+                    <option value="" selected>Sélectionnez une boutique</option>
+                  </select>
+                  <p ng-show="deal.shop">
+                    {{deal.shop.name}}<img src="{{deal.shop.logo}}" width="70" class="right"/>
+                  </p>
+                  <div ng-show="deal.shop.brand">
+                    <span class="card-title">
+                      Enseigne
+                    </span>
+                    <p>{{deal.shop.brand.name}}<img src="{{deal.shop.brand.logo}}" alt="{{deal.shop.brand.name}}" class="right" width="40"/></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
 
         <div class="col s12 m12 l6">
@@ -173,9 +177,9 @@
             <div class="card hoverable">
               <div class="card-content center">
                 <div ng-show="loading" class="progress">
-                  <div class="determinate" style="width: {{progressPercentage}}%"></div>
+                  <div class="determinate" style="width: {{progressPercentage}}%"></div>{{progressPercentage}}
                 </div>
-                <a ng-show="!loading" ng-click="addDeal(deal)" class="btn-large">Ajouter</a>
+                <a ng-show="!loading" ng-disabled="addDeal.$invalid" ng-click="addDeal(deal)" class="btn-large">Ajouter</a>
               </div>
             </div>
           </div>
