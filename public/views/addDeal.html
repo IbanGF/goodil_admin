@@ -42,17 +42,17 @@
                 <span class="card-title">
                   <div class="input-field col s12">
                     <label for="title">Titre:</label>
-                    <input type="text" name="deal_name" id="title" ng-model='deal.name' ng-required="true">
+                    <input type="text" name="deal_name" id="title" ng-model='deal.name' required>
                   </div>
                 </span>
                 <div class="card-content">
                   <div class="row">
                     <div class="input-field col s12">
-                      <textarea name="deal_description" class="materialize-textarea" id="description" ng-model='deal.description' ng-required="true"></textarea>
+                      <textarea name="deal_description" class="materialize-textarea" id="description" ng-model='deal.description' required></textarea>
                       <label for="description">Description:</label>
                     </div>
                     <div class="input-field col s12">
-                      <input name="deal_term" type="text" id="term" ng-model='deal.term' ng-required="true">
+                      <input name="deal_term" type="text" id="term" ng-model='deal.term' required>
                       <label for="term">Terme:</label>
                     </div>
                     <div class="input-field col s6">
@@ -70,7 +70,7 @@
                         weekdays-short="{{ weekdaysShort }}"
                         weekdays-letter="{{ weekdaysLetter }}"
                         ng-model='deal.start_date'
-                        ng-required="true">
+                        required>
                     </div>
                     <div class="input-field col s6">
                       <label for="endDate">Date fin:</label>
@@ -88,7 +88,7 @@
                         weekdays-letter="{{ weekdaysLetter }}"
                         min="{{ minDate }}"
                         ng-model='deal.end_date'
-                        ng-required="true">
+                        required>
                     </div>
                   </div>
                 </div>
