@@ -40,7 +40,6 @@ function addDealController($scope, $http, Upload, shopsService, categoriesServic
     }).progress(function(event) {
       $scope.$emit('LOAD');
       $scope.progressPercentage = parseInt(100.0 * event.loaded / event.total);
-      console.log('progress: ' + $scope.progressPercentage + '% ' + event.config.file.name);
     }).success(function(data, status, headers, config) {
       $scope.$emit('UNLOAD');
       console.log('file ' + config.file.name + ' uploaded. Response: ' + JSON.stringify(data));
