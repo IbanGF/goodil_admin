@@ -179,7 +179,7 @@
                 <div ng-show="loading" class="progress">
                   <div class="determinate" style="width: {{progressPercentage}}%"></div>{{progressPercentage}}
                 </div>
-                <button ng-show="!loading" ng-disabled="addDealForm.$invalid && !deal.subCategory && !deal.shop" ng-click="addDeal(deal)" class="btn-large">Ajouter</button>
+                <button ng-show="!loading" ng-disabled="addDealForm.$invalide && deal.subCategory && deal.shop" ng-click="addDeal(deal)" class="btn-large">Ajouter</button>
               </div>
             </div>
           </div>
