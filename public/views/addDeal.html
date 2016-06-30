@@ -102,7 +102,7 @@
                       <i tooltipped class="material-icons right" data-position="top" data-delay="150" data-tooltip="Ajouter une sous-catégorie">add</i>
                     </a>
                   </span>
-                  <select id="subCategory" data-ng-model="deal.subCategory" ng-options="subCategory.name for subCategory in subCategories" material-select watch>
+                  <select id="subCategory" data-ng-model="deal.subCategory" name="categorie" ng-options="subCategory.name for subCategory in subCategories" material-select watch>
                     <option value="" selected>Sélectionnez une sous-categorie</option>
                   </select>
                   <div ng-show="deal.subCategory">
@@ -122,7 +122,7 @@
                       <i tooltipped class="material-icons right" data-position="top" data-delay="150" data-tooltip="Ajouter une boutique">add</i>
                     </a>
                   </span>
-                  <select id="shop" data-ng-model="deal.shop" ng-options="shop.name for shop in shops" material-select watch ng-change="changePlace()">
+                  <select id="shop" data-ng-model="deal.shop" name="shop" ng-options="shop.name for shop in shops" material-select watch ng-change="changePlace()">
                     <option value="" selected>Sélectionnez une boutique</option>
                   </select>
                   <p ng-show="deal.shop">
@@ -179,7 +179,7 @@
                 <div ng-show="loading" class="progress">
                   <div class="determinate" style="width: {{progressPercentage}}%"></div>{{progressPercentage}}
                 </div>
-                <button ng-show="!loading" ng-disabled="addDealForm.$invalide && deal.subCategory && deal.shop" ng-click="addDeal(deal)" class="btn-large">Ajouter</button>
+                <button ng-show="!loading" ng-disabled="addDealForm.$invalide" ng-click="addDeal(deal)" class="btn-large">Ajouter</button>
               </div>
             </div>
           </div>
