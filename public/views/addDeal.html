@@ -183,31 +183,31 @@
               </div>
             </div>
 
-            <div class="row" ng-show="addDealForm.$invalid">
+            <div class="row">
               <div class="card hoverable">
                 <div class="card-content center">
-                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$dirty">
+                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$touched">
                     <span ng-show="addDealForm.deal_name.$error.required">Un titre est nécésaire à la création d'une offre</span>
                   </div>
-                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$dirty">
+                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$touched">
                     <span ng-show="addDealForm.deal_name.$error.required">Un titre est nécésaire à la création d'une offre</span>
                   </div>
-                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$dirty">
+                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$touched">
                     <span ng-show="addDealForm.deal_description.$error.required">Une description est nécésaire à la création d'une offre</span>
                   </div>
-                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$dirty">
+                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$touched">
                     <span ng-show="addDealForm.deal_term.$error.required">Des termes sont nécésaire à la création d'une offre</span>
                   </div>
-                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$dirty">
+                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$touched">
                     <span ng-show="addDealForm.startDate.$error.required">Une date de début est nécésaire à la création d'une offre</span>
                   </div>
-                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$dirty">
+                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$touched">
                     <span ng-show="addDealForm.endDate.$error.required">Une date de fin est nécésaire à la création d'une offre</span>
                   </div>
-                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$dirty">
+                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$touched">
                     <span ng-show="addDealForm.category.$error.required">Il est nécésaire de séléctioner une catégorie lors de la création d'une offre</span>
                   </div>
-                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$dirty">
+                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$touched">
                     <span ng-show="addDealForm.shop.$error.required">Il est nécésaire de séléctioner un magasin lors de la création d'une offre</span>
                   </div>
                 </div>
