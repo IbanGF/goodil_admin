@@ -174,7 +174,7 @@
 
             <div class="row">
               <div class="card hoverable">
-                <div class="card-content center" ng-click="$scope.submitted = true;">
+                <div class="card-content center">
                   <div ng-show="loading" class="progress">
                     <div class="determinate" style="width: {{progressPercentage}}%"></div>{{progressPercentage}}
                   </div>
@@ -189,10 +189,10 @@
                   <div ng-show="addDealForm.$submitted">
                     <span ng-show="addDealForm.file.$error.required">Une image est nécésaire à la création d'une offre</span>
                   </div>
-                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$dirty">
+                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$touched">
                     <span ng-show="addDealForm.deal_name.$error.required">Un titre est nécésaire à la création d'une offre</span>
                   </div>
-                  <div ng-show="addDealForm.$submitted || addDealForm.deal_description.$dirty">
+                  <div ng-show="addDealForm.$submitted || addDealForm.deal_description.$touched">
                     <span ng-show="addDealForm.deal_description.$error.required">Une description est nécésaire à la création d'une offre</span>
                   </div>
                   <div ng-show="addDealForm.$submitted || addDealForm.deal_term.$dirty">
@@ -201,7 +201,7 @@
                   <div ng-show="addDealForm.$submitted || addDealForm.startDate.$dirty">
                     <span ng-show="addDealForm.startDate.$error.required">Une date de début est nécésaire à la création d'une offre</span>
                   </div>
-                  <div ng-show="addDealForm.$submitted || addDealForm.endDate.$dirty">
+                  <div ng-show="addDealForm.$submitted || addDealForm.endDate.$touched">
                     <span ng-show="addDealForm.endDate.$error.required">Une date de fin est nécésaire à la création d'une offre</span>
                   </div>
                   <div ng-show="addDealForm.$submitted || addDealForm.category.$dirty">
