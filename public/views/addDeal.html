@@ -189,13 +189,13 @@
                   <div ng-show="addDealForm.$submitted">
                     <span ng-show="addDealForm.file.$error.required">Une image est nécésaire à la création d'une offre</span>
                   </div>
-                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$touched">
+                  <div ng-show="addDealForm.$submitted || addDealForm.deal_name.$dirty">
                     <span ng-show="addDealForm.deal_name.$error.required">Un titre est nécésaire à la création d'une offre</span>
                   </div>
-                  <div ng-show="addDealForm.$submitted || addDealForm.deal_description.$touched">
+                  <div ng-show="addDealForm.$submitted || addDealForm.deal_description.$dirty">
                     <span ng-show="addDealForm.deal_description.$error.required">Une description est nécésaire à la création d'une offre</span>
                   </div>
-                  <div ng-show="addDealForm.$submitted || addDealForm.deal_term.$touched">
+                  <div ng-show="addDealForm.$submitted || addDealForm.deal_term.$dirty">
                     <span ng-show="addDealForm.deal_term.$error.required">Des termes sont nécésaire à la création d'une offre</span>
                   </div>
                   <div ng-show="addDealForm.$submitted || addDealForm.startDate.$dirty">

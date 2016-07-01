@@ -4,8 +4,6 @@ function addDealController($scope, $http, Upload, shopsService, categoriesServic
   $scope.deal = {};
   $scope.centerMap = 'current-location';
   $scope.loading = false;
-  addDealForm.$setPristine();
-  addDealForm.$setUntouched();
 
   $scope.$on('LOAD', function() {
     $scope.loading = true;
