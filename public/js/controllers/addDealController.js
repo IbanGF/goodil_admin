@@ -4,6 +4,7 @@ function addDealController($scope, $http, Upload, shopsService, categoriesServic
   $scope.deal = {};
   $scope.centerMap = 'current-location';
   $scope.loading = false;
+  $scope.loading = false;
 
   $scope.$on('LOAD', function() {
     $scope.loading = true;
