@@ -178,7 +178,7 @@
                   <div ng-show="loading" class="progress">
                     <div class="determinate" style="width: {{progressPercentage}}%"></div>{{progressPercentage}}
                   </div>
-                  <input type="submit" ng-show="!loading" ng-disabled="addDealForm.$invalid" ng-click="addDeal(deal)" class="btn-large" value="Ajouter">
+                  <button type="submit" ng-show="!loading" ng-disabled="addDealForm.$invalid" ng-click="addDeal(deal)" class="btn-large">Ajouter</button>
                 </div>
               </div>
             </div>
