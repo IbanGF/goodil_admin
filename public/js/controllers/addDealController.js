@@ -28,8 +28,6 @@ function addDealController($scope, $http, Upload, shopsService, categoriesServic
     $scope.categories = res.data;
   });
 
-  console.log($scope.addDealForm);
-
   NgMap.getMap().then(function(map) {
     $scope.map = map;
   });
