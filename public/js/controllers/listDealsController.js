@@ -44,6 +44,7 @@ function listDealsController($scope, $http, dealsService, categoriesService, bra
   });
 
   $scope.delete = function(deal) {
+    console.log(deal);
     dealsService.deleteDeal(deal._id, deal.shop._id).then(function(res) {
       load();
     });
