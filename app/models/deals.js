@@ -172,7 +172,7 @@ var Deal = {
         res.send(err);
       } else {
         fs.unlink('./public/' + deal.image, function(err) {
-          if (err) return console.log(err);
+          if (err) console.log(err);
           deal.remove();
           Shop.deleteDealFromShop(req.params.shopID, req.params.id, res);
           console.log('file deleted successfully');
