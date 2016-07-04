@@ -6,7 +6,7 @@ module.exports = function (app) {
     app.post('/deal/uploadDealImage', Auth.user.isAdministrator, Deal.uploadDealImage);
     app.post('/deal', Auth.user.isAdministrator, Deal.createDeal);
     app.put('/deal/:id', Auth.user.isAdministrator, Deal.updateDeal);
-    app.delete('/deal/:id', Auth.user.isAdministrator, Deal.deleteDeal);
+    app.delete('/deal/:id/:shopID', Auth.user.isAdministrator, Deal.deleteDeal);
     app.get('/dealsInSubCategory/:subCategory', Deal.findAllDealsInSubCategory);
     app.get('/dealsInShop/:shop', Deal.findAllDealsInShop);
 };

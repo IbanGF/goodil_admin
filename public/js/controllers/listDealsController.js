@@ -43,8 +43,8 @@ function listDealsController($scope, $http, dealsService, categoriesService, bra
     console.log($scope.brands);
   });
 
-  $scope.delete = function(deal_id) {
-    dealsService.deleteDeal(deal_id).then(function(res) {
+  $scope.delete = function(deal) {
+    dealsService.deleteDeal(deal._id, deal.shop._id).then(function(res) {
       load();
     });
   };

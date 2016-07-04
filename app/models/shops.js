@@ -163,10 +163,10 @@ var Shop = {
         }
       });
   },
-  deleteDealFromShop: function(shop_id, deal_id, res) {
-    Shop.model.findByIdAndUpdate(shop_id, {
+  deleteDealFromShop: function(shop_id, dealId, res) {
+    Shop.model.findByIdAndUpdate(shopId, {
         $pull: {
-          deals: deal_id
+          deals: dealId
         }
       },
       function(err) {

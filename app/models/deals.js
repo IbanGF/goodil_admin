@@ -165,11 +165,18 @@ var Deal = {
     });
   },
   deleteDeal: function(req, res) {
-    Deal.model.findByIdAndRemove(req.params.id, function(err) {
+    Deal.model.findOne({
+      _id: req.params.id
+    }, function(err, deal) {
       if (err) {
-        Shop.deleteDealFromShop(req.params.category_id, req.params.id, res);
+        res.send(err);
       } else {
-        res.sendStatus(200);
+        fs.unlink('./public/' + deal.image, function(err) {
+          if (err) return console.log(err);
+          deal.remove();
+          Shop.deleteDealFromShop(req.params.shopID, req.params.id, res);
+          console.log('file deleted successfully');
+        });
       }
     });
   }
