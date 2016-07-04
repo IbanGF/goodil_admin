@@ -166,7 +166,7 @@ var Shop = {
   deleteDealFromShop: function(shopId, dealId, res) {
     Shop.model.findByIdAndUpdate(shopId, {
         $pull: {
-          deals: dealId
+          deals: ObjectId(dealId)
         }
       },
       function(err) {
