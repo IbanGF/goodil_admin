@@ -15,8 +15,8 @@ function dealsService($http) {
         createDeal: function (deal) {
             return $http.post('/deal', deal);
         },
-        deleteDeal: function (id, shop_id) {
-            return $http.delete('/deal/' + id + '/' + shop_id);
+        deleteDeal: function (id, shopId) {
+            return $http.delete('/deal/' + id + '/' + shopId);
         }
     };
 }

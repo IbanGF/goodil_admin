@@ -163,7 +163,7 @@ var Shop = {
         }
       });
   },
-  deleteDealFromShop: function(shop_id, dealId, res) {
+  deleteDealFromShop: function(shopId, dealId, res) {
     Shop.model.findByIdAndUpdate(shopId, {
         $pull: {
           deals: dealId
